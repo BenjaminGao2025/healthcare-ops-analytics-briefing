@@ -101,8 +101,8 @@ Rows returned: 2
 
 | source_name | max_loaded_at | age_days | freshness_status |
 | --- | --- | --- | --- |
-| BC_MoH | 2026-05-24 21:46:15.192048+00:00 | 0.1 | ok |
-| CIHI | 2026-05-24 21:46:15.192048+00:00 | 0.1 | ok |
+| BC_MoH | 2026-05-24 21:46:15.192048+00:00 | 0.12 | ok |
+| CIHI | 2026-05-24 21:46:15.192048+00:00 | 0.12 | ok |
 
 ## DQ07 — Reporting coverage by source and geography level
 

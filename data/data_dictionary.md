@@ -1,6 +1,6 @@
 # Data Dictionary
 
-Version: v0.5 — 2026-05-24
+Version: v0.6 — 2026-05-24
 
 ## Tables
 
@@ -74,6 +74,30 @@ Version: v0.5 — 2026-05-24
 | `data/processed/eda_summary.md` | Compact Day 4 EDA tables for source counts, national snapshot, BC gaps, VCH long waits, and quality caveats. | `make eda` |
 | `reports/analyst_report.md` | Analyst-facing narrative report that translates KPI and quality results into dashboard implications. | `make eda` |
 | `notebooks/01_eda_wait_times.ipynb` | Notebook entry point for interactive review of Day 4 EDA frames. | `make eda` |
+| `reports/methodology_note.md` | One-page methodology note covering scope, data boundaries, transformations, and interpretation limits. | `make artifacts` |
+| `reports/opus_review_guide.md` | Review instructions for an independent code and analytics review. | `make artifacts` |
+| `reports/board_briefing_deck.md` | Six-page briefing deck source used to generate the local PDF. | `make artifacts` |
+| `reports/board_briefing_deck.pdf` | Six-page board-style briefing deck generated locally and ignored by Git. | `make artifacts` |
+| `excel/healthcare_ops_analytics_workbook.xlsx` | Excel workbook with summary, KPI, and quality tabs generated locally and ignored by Git. | `make artifacts` |
+
+## Dashboard Data Frames
+
+| Frame | Source query | Primary dashboard use |
+|---|---|---|
+| `national_snapshot` | K01 | Executive Summary national latest-year table. |
+| `bc_gap` | K03 | Executive Summary BC vs Canada access gap chart. |
+| `national_trend` | K04 | Operational Drilldown national 5-year trend. |
+| `tail_risk` | K06 | Operational Drilldown p90-to-median risk review. |
+| `bc_ha_comparison` | K07 | Operational Drilldown BC health authority comparison. |
+| `vch_long_waits` | K08 | Executive Summary and Operational Drilldown VCH long-wait table. |
+| `vch_vs_other_gap` | K09 | Operational Drilldown VCH vs other BC HA gap table. |
+| `vch_hospital_p90` | K10 | Operational Drilldown VCH hospital p90 table. |
+| `ha_volume_trend` | K11 | Operational Drilldown health-authority volume trend. |
+| `missingness` | DQ02 | Data Quality Monitor missingness chart. |
+| `duplicates` | DQ03 | Data Quality Monitor duplicate-key metric. |
+| `validity` | DQ04 | Data Quality Monitor impossible-value checks. |
+| `freshness` | DQ06 | Data Quality Monitor source freshness status. |
+| `suppressed_counts` | DQ08 | Data Quality Monitor suppressed/null case-volume metric. |
 
 ## Source coverage
 

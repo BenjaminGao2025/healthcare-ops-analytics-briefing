@@ -3,9 +3,9 @@
 ![Build](https://img.shields.io/badge/build-placeholder-lightgrey)
 ![License](https://img.shields.io/badge/license-MIT-blue)
 
-A public Canadian healthcare operations analytics demo that turns wait-time, access, and community context data into executive-ready reporting.
+A public Canadian healthcare operations analytics demo that turns wait-time, access, and community context data into executive-ready reporting, quality checks, and briefing artifacts.
 
-Repository target: `git@github.com:BenjaminGao2025/healthcare-ops-analytics-briefing.git`
+Repository target: `https://github.com/BenjaminGao2025/healthcare-ops-analytics-briefing`
 
 ## What This Project Demonstrates
 
@@ -31,7 +31,7 @@ Requires: Docker, Python 3.11, `make`.
 
 ```bash
 # 1. Clone and enter
-git clone git@github.com:BenjaminGao2025/healthcare-ops-analytics-briefing.git
+git clone https://github.com/BenjaminGao2025/healthcare-ops-analytics-briefing.git
 cd healthcare-ops-analytics-briefing
 
 # 2. Python environment
@@ -48,11 +48,22 @@ make schema
 # 5. Place raw data files into data/raw/ (see data/raw/SOURCE.md), then:
 make load
 
-# 6. Launch the dashboard
+# 6. Generate reports and review artifacts
+make kpis
+make quality
+make eda
+make artifacts
+
+# 7. Launch the dashboard
 make app
 ```
 
-`make load` is reserved for `src/ingest.py` implementation and will populate `dim_*` and `fact_wait_time` after Day 1 ingestion work is added. `make app` opens Streamlit on http://localhost:8501.
+`make app` opens Streamlit on http://localhost:8501. `make artifacts` writes the tracked Markdown methodology/review/deck source files and regenerates the local PDF deck and Excel workbook.
+
+Generated local files intentionally ignored by Git:
+
+- `reports/board_briefing_deck.pdf`
+- `excel/healthcare_ops_analytics_workbook.xlsx`
 
 To stop Postgres: `make down`. To open a psql shell: `make psql`.
 
@@ -71,7 +82,12 @@ healthcare-ops-analytics-briefing/
       SOURCE.md
       .gitkeep
       vch_community_profiles/.gitkeep
-    processed/.gitkeep
+    processed/
+      .gitkeep
+      INSPECTION_NOTES.md
+      data_quality_first_run.md
+      eda_summary.md
+      kpi_first_run.md
     data_dictionary.md
   sql/
     01_schema.sql
@@ -84,9 +100,14 @@ healthcare-ops-analytics-briefing/
     03_bc_vs_canada_benchmark.ipynb
   src/
     __init__.py
+    dashboard_data.py
+    eda.py
     ingest.py
+    kpi.py
     transform.py
     kpi_calculations.py
+    portfolio_artifacts.py
+    quality.py
     quality_checks.py
     plots.py
   app/
@@ -98,13 +119,32 @@ healthcare-ops-analytics-briefing/
       4_Equity_and_Responsible_Use.py
   reports/
     .gitkeep
+    analyst_report.md
+    board_briefing_deck.md
+    methodology_note.md
+    opus_review_guide.md
   tests/
     __init__.py
+    test_dashboard_artifacts.py
+    test_eda.py
+    test_ingest.py
     test_kpi_calculations.py
+    test_kpi_queries.py
+    test_quality_checks_sql.py
     test_quality_checks.py
   excel/
     .gitkeep
 ```
+
+## Generated Deliverables
+
+- Streamlit dashboard: `make app`
+- KPI first-run report: `data/processed/kpi_first_run.md`
+- Data quality first-run report: `data/processed/data_quality_first_run.md`
+- Analyst report: `reports/analyst_report.md`
+- Methodology note: `reports/methodology_note.md`
+- Board briefing deck source: `reports/board_briefing_deck.md`
+- Local PDF deck and Excel workbook: `make artifacts`
 
 ## License
 

@@ -1,6 +1,6 @@
 PYTHON ?= python
 
-.PHONY: up down psql schema load kpis quality eda app test lint fmt
+.PHONY: up down psql schema load kpis quality eda artifacts app test lint fmt
 
 up:
 	docker compose up -d
@@ -26,8 +26,11 @@ quality:
 eda:
 	$(PYTHON) -m src.eda
 
+artifacts:
+	$(PYTHON) -m src.portfolio_artifacts
+
 app:
-	streamlit run app/streamlit_app.py
+	PYTHONPATH=. $(PYTHON) -m streamlit run app/streamlit_app.py
 
 test:
 	pytest -q
