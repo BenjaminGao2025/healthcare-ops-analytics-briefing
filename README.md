@@ -146,6 +146,14 @@ healthcare-ops-analytics-briefing/
 - Board briefing deck source: `reports/board_briefing_deck.md`
 - Local PDF deck and Excel workbook: `make artifacts`
 
+## 7840 Deployment
+
+The production-style deployment lives under `deploy/7840/` and is intended for the 7840 mini host, not for a local long-running service.
+
+- `deploy/7840/docker-compose.yml` runs PostgreSQL 16 plus the Streamlit dashboard container.
+- `deploy/7840/start.sh` applies the schema, reloads public raw data, regenerates reports/artifacts, then starts Streamlit.
+- The app expects raw public files under `data/raw/` on the server and joins the existing reverse-proxy Docker network via `PROXY_NETWORK` from `deploy/7840/.env`.
+
 ## License
 
 MIT.

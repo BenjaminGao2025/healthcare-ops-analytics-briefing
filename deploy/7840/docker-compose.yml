@@ -1,0 +1,58 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: healthops-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: healthops
+      POSTGRES_PASSWORD: healthops
+      POSTGRES_DB: healthops
+    volumes:
+      - healthops_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U healthops -d healthops"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+    networks:
+      - internal
+
+  app:
+    build:
+      context: ../..
+      dockerfile: deploy/7840/Dockerfile
+    container_name: healthops-streamlit
+    restart: unless-stopped
+    environment:
+      POSTGRES_HOST: postgres
+      POSTGRES_PORT: "5432"
+      POSTGRES_USER: healthops
+      POSTGRES_PASSWORD: healthops
+      POSTGRES_DB: healthops
+    volumes:
+      - ../../data/raw:/app/data/raw:ro
+    depends_on:
+      postgres:
+        condition: service_healthy
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "python -c \"import urllib.request; urllib.request.urlopen('http://localhost:8501/_stcore/health', timeout=3).read()\"",
+        ]
+      interval: 15s
+      timeout: 5s
+      retries: 20
+    networks:
+      - internal
+      - proxy
+
+volumes:
+  healthops_pgdata:
+
+networks:
+  internal:
+    driver: bridge
+  proxy:
+    external: true
+    name: ${PROXY_NETWORK}
