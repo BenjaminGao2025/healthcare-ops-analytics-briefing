@@ -13,7 +13,7 @@ schema:
 	docker exec -i healthops_pg psql -U healthops -d healthops -f /sql/01_schema.sql
 
 load:
-	echo "TODO: implement src/ingest.py"
+	python -m src.ingest
 
 app:
 	streamlit run app/streamlit_app.py
