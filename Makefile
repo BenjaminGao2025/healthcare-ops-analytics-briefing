@@ -1,4 +1,6 @@
-.PHONY: up down psql schema load app test lint fmt
+PYTHON ?= python
+
+.PHONY: up down psql schema load kpis app test lint fmt
 
 up:
 	docker compose up -d
@@ -13,7 +15,10 @@ schema:
 	docker exec -i healthops_pg psql -U healthops -d healthops -f /sql/01_schema.sql
 
 load:
-	python -m src.ingest
+	$(PYTHON) -m src.ingest
+
+kpis:
+	$(PYTHON) -m src.kpi
 
 app:
 	streamlit run app/streamlit_app.py

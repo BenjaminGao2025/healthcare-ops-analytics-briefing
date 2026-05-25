@@ -166,3 +166,39 @@ Run date: 2026-05-24.
 | CIHI | Hip Fracture Repair/Emergency and Inpatient | 1.01 | 0.395833333333333 | 1.49583333333333 |
 
 Interpretation: BC wait-time percentiles are not 7x larger than CIHI after the weeks-to-days conversion, and hip/knee replacement values are in the same broad range across sources. CIHI hip fracture values are close to 1 day after hours-to-days normalization.
+
+## Day 2 — KPI sanity check (2026-05-24)
+
+### Row count per KPI
+
+| KPI | Rows returned |
+| --- | ---: |
+| K01 | 13 |
+| K02 | 93 |
+| K03 | 13 |
+| K04 | 25 |
+| K05 | 53 |
+| K06 | 117 |
+| K07 | 484 |
+| K08 | 20 |
+| K09 | 81 |
+| K10 | 401 |
+| K11 | 30 |
+| K12 | 6 |
+
+### Filters and matching notes
+
+- No procedure-name `ILIKE` matching was needed for Day 2 KPIs.
+- K08 uses the exact BC_MoH health authority geography: `geo_name = 'Vancouver Coastal'` and `geo_type = 'health_authority'`.
+- K10 uses the geography hierarchy for VCH hospitals: hospital rows whose `parent_geo_id` points to `Vancouver Coastal` (`geo_id = 118`).
+- K04 aggregates CIHI rows to one trend point per `procedure_name` x `reporting_year` because CIHI can contain multiple reporting periods in the same leading year.
+
+### Anomalies and hypotheses
+
+- No KPI returned 0 rows.
+- K02 returns 93 rows rather than a full 100-row 10-procedure x 10-province grid because not every top-volume procedure has a latest-year provincial row for every province in the loaded CIHI table.
+- K05 returns fewer rows than K06 because `pct_meeting_benchmark` is not populated for every procedure x province row.
+
+### Sanity narrative
+
+The largest latest-year BC vs Canada median gaps in CIHI are MRI Scan (+29.3 days), Knee Replacement (+14.3 days), and CT Scan (+8.2 days), which makes the executive gap KPI focus on access-sensitive diagnostic and orthopedic areas. In latest-year BC_MoH data for Vancouver Coastal, the longest median waits are Dental Surgery (226.1 days), Varicose Veins Ligation/Stripping (193.2 days), and Other Ear Surgery (179.9 days), which are plausible non-urgent surgical categories for an operational drilldown.

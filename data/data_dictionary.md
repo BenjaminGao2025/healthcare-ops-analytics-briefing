@@ -1,6 +1,6 @@
 # Data Dictionary
 
-Version: v0.2 — 2026-05-24
+Version: v0.3 — 2026-05-24
 
 ## Tables
 
@@ -36,6 +36,23 @@ Version: v0.2 — 2026-05-24
 | % meeting benchmark | Share of patients whose wait was within the procedure's national benchmark. | `fact_wait_time.pct_meeting_benchmark` | Exec |
 | Case volume | Number of completed procedures in the reporting period. | `fact_wait_time.case_volume` | Exec / Operational |
 | BC vs Canada gap | BC median wait minus Canada median wait for the same procedure and year. Positive = BC is slower. | `median_wait_days[BC] - median_wait_days[Canada]` (computed) | Exec |
+
+## KPI Catalog
+
+| ID | Name | Audience | Source | Key output columns | Query file |
+|---|---|---|---|---|---|
+| K01 | National median wait, latest year, by procedure | Executive | CIHI | `procedure_name`, `median_wait_days`, `p90_wait_days`, `pct_meeting_benchmark`, `case_volume` | `sql/03_kpi_queries.sql` |
+| K02 | Provincial median wait, latest year, top 10 procedures by volume | Executive | CIHI | `procedure_name`, `province`, `median_wait_days`, `p90_wait_days` | `sql/03_kpi_queries.sql` |
+| K03 | BC vs Canada gap, latest year | Executive | CIHI | `procedure_name`, `bc_median`, `canada_median`, `gap_days`, `gap_pct` | `sql/03_kpi_queries.sql` |
+| K04 | 5-year median wait trend, top 5 procedures | Operational | CIHI | `procedure_name`, `reporting_year`, `median_wait_days` | `sql/03_kpi_queries.sql` |
+| K05 | % meeting benchmark by procedure x province, latest year | Executive | CIHI | `procedure_name`, `province`, `pct_meeting_benchmark` | `sql/03_kpi_queries.sql` |
+| K06 | p90 tail risk by procedure x province, latest year | Operational | CIHI | `procedure_name`, `province`, `median_wait_days`, `p90_wait_days`, `p90_to_median_ratio` | `sql/03_kpi_queries.sql` |
+| K07 | BC Health Authority comparison, latest fiscal year | Executive | BC_MoH | `health_authority`, `procedure_name`, `median_wait_days`, `case_volume` | `sql/03_kpi_queries.sql` |
+| K08 | VCH top 20 long-wait procedures, latest fiscal year | Operational | BC_MoH | `procedure_name`, `median_wait_days`, `p90_wait_days`, `case_volume` | `sql/03_kpi_queries.sql` |
+| K09 | VCH vs other BC HAs gap, latest fiscal year | Executive | BC_MoH | `procedure_name`, `vch_median`, `bc_other_avg_median`, `gap_days` | `sql/03_kpi_queries.sql` |
+| K10 | VCH hospital-level p90, latest fiscal year | Operational | BC_MoH | `hospital`, `procedure_name`, `p90_wait_days`, `median_wait_days`, `case_volume` | `sql/03_kpi_queries.sql` |
+| K11 | Case volume trend by HA, last 5 fiscal years | Operational | BC_MoH | `health_authority`, `reporting_year`, `total_case_volume` | `sql/03_kpi_queries.sql` |
+| K12 | Reporting coverage by source x geo level | Data Quality | CIHI / BC_MoH | `source_name`, `geo_type`, `latest_reporting_year`, `latest_reporting_period`, `n_procedures`, `n_rows` | `sql/03_kpi_queries.sql` |
 
 ## Source coverage
 
