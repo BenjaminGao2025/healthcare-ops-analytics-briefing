@@ -9,7 +9,6 @@ data/raw/*.csv
 data/raw/*.pdf
 data/processed/*.parquet
 data/processed/*.csv
-!data/processed/vch_community_indicators.csv
 .vscode/
 reports/*.pdf
 reports/*.pptx

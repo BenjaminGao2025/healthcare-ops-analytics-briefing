@@ -130,8 +130,8 @@ Generated from public aggregate source files in `data/raw/`.
 | bc_surgical_wait_20260524.csv | HOSPITAL_NAME | dim_geography.geo_name | All Facilities uses HA geography; otherwise hospital row under HA. |
 | bc_surgical_wait_20260524.csv | FISCAL_YEAR | fact_wait_time.reporting_year / reporting_period | Start year becomes integer year; full fiscal label kept in reporting_period. |
 | bc_surgical_wait_20260524.csv | COMPLETED | fact_wait_time.case_volume | <5 suppressed values become NULL rather than estimated. |
-| bc_surgical_wait_20260524.csv | COMPLETED_50TH_PERCENTILE | fact_wait_time.median_wait_days | Source values appear to be weeks; multiplied by 7 to fit days. Range sanity check supports this conversion; confirm against source metadata before final publication. |
-| bc_surgical_wait_20260524.csv | COMPLETED_90TH_PERCENTILE | fact_wait_time.p90_wait_days | Source values appear to be weeks; multiplied by 7 to fit days. Range sanity check supports this conversion; confirm against source metadata before final publication. |
+| bc_surgical_wait_20260524.csv | COMPLETED_50TH_PERCENTILE | fact_wait_time.median_wait_days | Source values are interpreted as weeks; multiplied by 7 to fit days. Range sanity check supports this conversion; source-owner confirmation is required before operational use. |
+| bc_surgical_wait_20260524.csv | COMPLETED_90TH_PERCENTILE | fact_wait_time.p90_wait_days | Source values are interpreted as weeks; multiplied by 7 to fit days. Range sanity check supports this conversion; source-owner confirmation is required before operational use. |
 
 ## Range sanity checks
 

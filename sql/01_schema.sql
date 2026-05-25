@@ -2,7 +2,7 @@
 Healthcare Ops Analytics Briefing
 PostgreSQL 16 schema for public Canadian healthcare operations reporting.
 
-This schema stores aggregate public wait-time and community context records.
+This schema stores aggregate public wait-time records.
 It is not designed for patient-level records or internal health authority data.
 */
 
@@ -36,17 +36,6 @@ CREATE TABLE IF NOT EXISTS fact_wait_time (
     p90_wait_days numeric,
     pct_meeting_benchmark numeric,
     case_volume integer,
-    loaded_at timestamptz NOT NULL DEFAULT now()
-);
-
-CREATE TABLE IF NOT EXISTS dim_community (
-    community_id integer GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    geo_id integer REFERENCES dim_geography(geo_id),
-    indicator_name text NOT NULL,
-    indicator_year integer,
-    indicator_value numeric,
-    indicator_unit text,
-    source_name text NOT NULL,
     loaded_at timestamptz NOT NULL DEFAULT now()
 );
 

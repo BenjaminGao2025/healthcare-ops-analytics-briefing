@@ -11,6 +11,7 @@ DEPLOY_DIR = Path("deploy/7840")
 def test_7840_deploy_files_exist() -> None:
     assert (DEPLOY_DIR / "Dockerfile").exists()
     assert (DEPLOY_DIR / "docker-compose.yml").exists()
+    assert (DEPLOY_DIR / ".env.example").exists()
     assert (DEPLOY_DIR / "start.sh").exists()
 
 
@@ -20,6 +21,12 @@ def test_compose_uses_external_proxy_network_env() -> None:
     assert "healthops-streamlit" in compose
     assert "PROXY_NETWORK" in compose
     assert "mga-ai" not in compose
+
+
+def test_compose_does_not_commit_database_password() -> None:
+    compose = (DEPLOY_DIR / "docker-compose.yml").read_text(encoding="utf-8")
+    assert "POSTGRES_PASSWORD: healthops" not in compose
+    assert "POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}" in compose
 
 
 def test_start_script_bootstraps_db_before_streamlit() -> None:

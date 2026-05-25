@@ -375,7 +375,7 @@ def load_wait_time_sources(raw_dir: Path, engine: Engine) -> dict[str, dict[str,
                 """
             )
         )
-        for table_name in ["dim_procedure", "dim_geography", "fact_wait_time", "dim_community"]:
+        for table_name in ["dim_procedure", "dim_geography", "fact_wait_time"]:
             counts[table_name] = {
                 "row_count": int(conn.execute(text(f"SELECT COUNT(*) FROM {table_name}")).scalar_one())
             }

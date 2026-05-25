@@ -15,7 +15,7 @@ This portfolio project demonstrates how public aggregate healthcare wait-time da
 
 - CIHI national, provincial, and regional rows are normalized into shared procedure, geography, year, period, and KPI fields.
 - BC_MoH fiscal-year surgical rows are normalized into province, health authority, and hospital geographies.
-- BC_MoH percentile fields (`COMPLETED_50TH_PERCENTILE`, `COMPLETED_90TH_PERCENTILE`) are interpreted as weeks in the public export and converted to days; range checks against CIHI hip/knee procedure magnitudes are documented in `INSPECTION_NOTES.md`.
+- BC_MoH percentile definitions are documented by the [B.C. wait-time data collection page](https://www2.gov.bc.ca/gov/content/health/accessing-health-care/surgical-wait-times/understanding-wait-times/wait-time-data-collection). The downloaded public export does not include a separate field-level metadata sheet, so `COMPLETED_50TH_PERCENTILE` and `COMPLETED_90TH_PERCENTILE` are interpreted as weeks and converted to days based on public reporting context plus range checks against CIHI hip/knee procedure magnitudes documented in `INSPECTION_NOTES.md`.
 - CIHI Hip Fracture Repair values reported in hours are converted to days for table consistency and called out in the Executive Summary.
 - Suppressed or unavailable case-volume values are preserved as nulls rather than estimated.
 

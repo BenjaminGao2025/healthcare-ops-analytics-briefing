@@ -1,9 +1,9 @@
 # Healthcare Ops Analytics Briefing
 
-![Build](https://img.shields.io/badge/build-placeholder-lightgrey)
+![CI](https://github.com/BenjaminGao2025/healthcare-ops-analytics-briefing/actions/workflows/ci.yml/badge.svg)
 ![License](https://img.shields.io/badge/license-MIT-blue)
 
-A public Canadian healthcare operations analytics demo that turns wait-time, access, and community context data into executive-ready reporting, quality checks, and briefing artifacts.
+A public Canadian healthcare operations analytics demo that turns wait-time and access data into executive-ready reporting, quality checks, and briefing artifacts.
 
 Repository target: `https://github.com/BenjaminGao2025/healthcare-ops-analytics-briefing`
 
@@ -21,7 +21,6 @@ Repository target: `https://github.com/BenjaminGao2025/healthcare-ops-analytics-
 |---|---|---|
 | CIHI Wait Times for Priority Procedures | https://www.cihi.ca/en/explore-wait-times-for-priority-procedures-across-canada | National and provincial wait-time indicators for selected priority procedures. |
 | BC Surgical Wait Times | https://www2.gov.bc.ca/gov/content/health/accessing-health-care/surgical-wait-times | British Columbia surgical wait-time context by procedure, region, and care setting where available. |
-| VCH Community Health Profiles | https://www.vch.ca/en/community-health-profiles | Public community-level indicators that support equity-aware context and planning interpretation. |
 
 All data used is publicly available. This project does not use any patient-level or VCH internal data.
 
@@ -71,6 +70,9 @@ To stop Postgres: `make down`. To open a psql shell: `make psql`.
 
 ```text
 healthcare-ops-analytics-briefing/
+  .github/
+    workflows/
+      ci.yml
   README.md
   LICENSE
   .gitignore
@@ -81,7 +83,6 @@ healthcare-ops-analytics-briefing/
     raw/
       SOURCE.md
       .gitkeep
-      vch_community_profiles/.gitkeep
     processed/
       .gitkeep
       INSPECTION_NOTES.md
@@ -130,7 +131,7 @@ healthcare-ops-analytics-briefing/
     test_ingest.py
     test_kpi_calculations.py
     test_kpi_queries.py
-    test_quality_checks_sql.py
+    test_scope_and_ci.py
     test_quality_checks.py
   excel/
     .gitkeep
@@ -152,6 +153,7 @@ The production-style deployment lives under `deploy/7840/` and is intended for t
 
 - `deploy/7840/docker-compose.yml` runs PostgreSQL 16 plus the Streamlit dashboard container.
 - `deploy/7840/start.sh` applies the schema, reloads public raw data, regenerates reports/artifacts, then starts Streamlit.
+- Copy `deploy/7840/.env.example` to `deploy/7840/.env`, set the reverse-proxy Docker network and database password there, and keep `.env` uncommitted.
 - The app expects raw public files under `data/raw/` on the server and joins the existing reverse-proxy Docker network via `PROXY_NETWORK` from `deploy/7840/.env`.
 
 ## License

@@ -1,13 +1,12 @@
 # Data Dictionary
 
-Version: v0.7 — 2026-05-24
+Version: v0.8 — 2026-05-24
 
 ## Tables
 
 - `dim_procedure`: Standardized procedure names, categories, and benchmark metadata used in wait-time reporting.
-- `dim_geography`: Geography hierarchy for Canada, province, health authority, hospital, and community-level records.
+- `dim_geography`: Geography hierarchy for Canada, province, health authority, and hospital records.
 - `fact_wait_time`: Core wait-time KPI table by procedure, geography, reporting year, and reporting period.
-- `dim_community`: Aggregate community indicators used for context and equity-aware interpretation.
 
 ## Columns
 
@@ -111,6 +110,5 @@ Version: v0.7 — 2026-05-24
 - CIHI `Data year` includes standard April-September rows plus `FY` and `Q3Q4` suffixes. The loader keeps the leading year in `reporting_year` and stores the suffix in `reporting_period`; confirm this is the preferred reporting convention.
 - CIHI hip fracture repair uses hours for some wait metrics. The loader divides hours by 24 to fit `*_wait_days`; range sanity checks support the conversion, but the dashboard should likely display these procedures in hours for healthcare readers.
 - BC Surgical Wait Times has fiscal-year labels such as `2024/25`. The loader stores `2024` as `reporting_year` and `FY 2024/25` as `reporting_period`; verify this with the final reporting narrative.
-- BC Surgical Wait Times percentile values are interpreted as weeks and multiplied by 7 to fit `*_wait_days`; range sanity checks support the conversion and the dashboard/methodology call out this unit assumption.
+- BC Surgical Wait Times percentile definitions are documented by the [B.C. wait-time data collection page](https://www2.gov.bc.ca/gov/content/health/accessing-health-care/surgical-wait-times/understanding-wait-times/wait-time-data-collection), but the downloaded public export does not include a separate field-level metadata sheet. The loader interprets `COMPLETED_50TH_PERCENTILE` and `COMPLETED_90TH_PERCENTILE` as weeks and multiplies by 7 to fit `*_wait_days`; range sanity checks support the conversion, and source-owner confirmation would be required before operational use.
 - BC suppressed counts such as `<5` are stored as NULL rather than approximated, to avoid inventing case volume.
-- VCH Community Profiles are not loaded in Day 1; the profile PDF extraction plan still needs to be defined.

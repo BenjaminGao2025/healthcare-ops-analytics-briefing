@@ -4,13 +4,13 @@ services:
     container_name: healthops-postgres
     restart: unless-stopped
     environment:
-      POSTGRES_USER: healthops
-      POSTGRES_PASSWORD: healthops
-      POSTGRES_DB: healthops
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
     volumes:
       - healthops_pgdata:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U healthops -d healthops"]
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
       interval: 5s
       timeout: 3s
       retries: 20
@@ -26,9 +26,9 @@ services:
     environment:
       POSTGRES_HOST: postgres
       POSTGRES_PORT: "5432"
-      POSTGRES_USER: healthops
-      POSTGRES_PASSWORD: healthops
-      POSTGRES_DB: healthops
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
     volumes:
       - ../../data/raw:/app/data/raw:ro
     depends_on:
