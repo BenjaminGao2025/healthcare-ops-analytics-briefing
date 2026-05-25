@@ -13,9 +13,9 @@ Rows returned: 13
 | Bladder Cancer Surgery | 27.9 | 66.5 |  | 13946 |
 | Breast Cancer Surgery | 23.1 | 47.4 |  | 18085 |
 | CABG | 7.8 | 84.2 |  | 8655 |
+| CT Scan | 15.8 | 128.0 |  | 1026885 |
 | Cataract Surgery | 67.9 | 229.2 | 69.0 | 203920 |
 | Colorectal Cancer Surgery | 22.5 | 47.5 |  | 6955 |
-| CT Scan | 15.8 | 128.0 |  | 1026885 |
 | Hip Fracture Repair | 1.0 | 2.5 | 83.1 | 13493 |
 | Hip Replacement | 125.4 | 339.9 | 67.9 | 27591 |
 | Knee Replacement | 150.7 | 386.8 | 61.4 | 42418 |
@@ -60,6 +60,14 @@ Rows returned: 93
 | CABG | Ontario | 7.0 | 66.0 |
 | CABG | Quebec |  |  |
 | CABG | Saskatchewan | 5.0 | 111.0 |
+| CT Scan | Alberta | 34.0 | 116.0 |
+| CT Scan | British Columbia | 24.0 | 183.0 |
+| CT Scan | Manitoba | 55.0 | 162.0 |
+| CT Scan | Newfoundland and Labrador |  |  |
+| CT Scan | Nova Scotia | 45.0 | 192.0 |
+| CT Scan | Ontario | 8.0 | 113.0 |
+| CT Scan | Prince Edward Island | 18.1 | 113.3 |
+| CT Scan | Saskatchewan | 21.0 | 85.0 |
 | Cataract Surgery | Alberta | 85.0 | 249.0 |
 | Cataract Surgery | British Columbia | 41.0 | 159.0 |
 | Cataract Surgery | Manitoba | 88.0 | 266.0 |
@@ -70,14 +78,6 @@ Rows returned: 93
 | Cataract Surgery | Prince Edward Island | 352.6 | 563.5 |
 | Cataract Surgery | Quebec | 76.0 | 223.0 |
 | Cataract Surgery | Saskatchewan | 64.0 | 220.0 |
-| CT Scan | Alberta | 34.0 | 116.0 |
-| CT Scan | British Columbia | 24.0 | 183.0 |
-| CT Scan | Manitoba | 55.0 | 162.0 |
-| CT Scan | Newfoundland and Labrador |  |  |
-| CT Scan | Nova Scotia | 45.0 | 192.0 |
-| CT Scan | Ontario | 8.0 | 113.0 |
-| CT Scan | Prince Edward Island | 18.1 | 113.3 |
-| CT Scan | Saskatchewan | 21.0 | 85.0 |
 | Hip Fracture Repair | Alberta | 0.9 | 2.2 |
 | Hip Fracture Repair | British Columbia | 1.5 | 2.8 |
 | Hip Fracture Repair | Manitoba | 0.8 | 2.1 |
@@ -156,16 +156,16 @@ Rows returned: 25
 
 | procedure_name | reporting_year | median_wait_days |
 | --- | --- | --- |
-| Cataract Surgery | 2020 | 92.4 |
-| Cataract Surgery | 2021 | 69.7 |
-| Cataract Surgery | 2022 | 70.0 |
-| Cataract Surgery | 2023 | 66.4 |
-| Cataract Surgery | 2024 | 67.9 |
 | CT Scan | 2020 | 11.5 |
 | CT Scan | 2021 | 12.5 |
 | CT Scan | 2022 | 14.3 |
 | CT Scan | 2023 | 16.4 |
 | CT Scan | 2024 | 15.8 |
+| Cataract Surgery | 2020 | 92.4 |
+| Cataract Surgery | 2021 | 69.7 |
+| Cataract Surgery | 2022 | 70.0 |
+| Cataract Surgery | 2023 | 66.4 |
+| Cataract Surgery | 2024 | 67.9 |
 | Knee Replacement | 2020 | 171.5 |
 | Knee Replacement | 2021 | 167.0 |
 | Knee Replacement | 2022 | 194.1 |
@@ -275,8 +275,8 @@ Rows returned: 117
 | Colorectal Cancer Surgery | Prince Edward Island | 15.5 | 60.0 | 3.9 |
 | MRI Scan | Ontario | 46.0 | 179.0 | 3.9 |
 | Cataract Surgery | Ontario | 71.0 | 253.0 | 3.6 |
-| Cataract Surgery | Saskatchewan | 64.0 | 220.0 | 3.4 |
 | CT Scan | Alberta | 34.0 | 116.0 | 3.4 |
+| Cataract Surgery | Saskatchewan | 64.0 | 220.0 | 3.4 |
 | Knee Replacement | Nova Scotia | 146.0 | 490.0 | 3.4 |
 | MRI Scan | Alberta | 63.0 | 217.0 | 3.4 |
 | MRI Scan | Manitoba | 104.0 | 352.0 | 3.4 |
@@ -288,10 +288,10 @@ Rows returned: 117
 | Hip Fracture Repair | Newfoundland and Labrador | 0.9 | 2.9 | 3.0 |
 | Hip Fracture Repair/Emergency and Inpatient | Prince Edward Island | 0.7 | 2.0 | 3.0 |
 | Knee Replacement | Manitoba | 243.0 | 726.0 | 3.0 |
+| CT Scan | Manitoba | 55.0 | 162.0 | 2.9 |
 | Cataract Surgery | Alberta | 85.0 | 249.0 | 2.9 |
 | Cataract Surgery | Nova Scotia | 54.0 | 156.0 | 2.9 |
 | Cataract Surgery | Quebec | 76.0 | 223.0 | 2.9 |
-| CT Scan | Manitoba | 55.0 | 162.0 | 2.9 |
 | Hip Replacement | Alberta | 109.0 | 317.0 | 2.9 |
 | Hip Replacement | Ontario | 83.0 | 239.0 | 2.9 |
 | Knee Replacement | Alberta | 139.0 | 407.0 | 2.9 |
@@ -374,13 +374,11 @@ Rows returned: 117
 
 Audience: Executive
 
-Rows returned: 484
+Rows returned: 472
 
 | health_authority | procedure_name | median_wait_days | case_volume |
 | --- | --- | --- | --- |
 | Fraser | Abdominoplasty | 49.0 | 69.0 |
-| Fraser | All Other Procedures | 27.3 | 1502.0 |
-| Fraser | All Procedures | 37.1 | 79001.0 |
 | Fraser | Aortic Aneurysm Repair | 28.7 | 212.0 |
 | Fraser | Appendectomy | 28.0 | 124.0 |
 | Fraser | Bariatric Surgery | 34.3 | 8.0 |
@@ -390,12 +388,12 @@ Rows returned: 484
 | Fraser | Breast Biopsy | 20.3 | 688.0 |
 | Fraser | Breast Reconstruction | 44.1 | 435.0 |
 | Fraser | Breast Reduction | 84.0 | 1207.0 |
+| Fraser | CSF Drainage | 6.3 | 7.0 |
 | Fraser | Cataract Surgery | 35.0 | 24544.0 |
 | Fraser | Cholecystectomy | 35.0 | 2251.0 |
 | Fraser | Colostomy/Ileostomy | 35.0 | 153.0 |
 | Fraser | Cone Biopsy | 25.2 | 61.0 |
 | Fraser | Cranial Surgery | 14.0 | 147.0 |
-| Fraser | CSF Drainage | 6.3 | 7.0 |
 | Fraser | Cyst/Ganglion Removal | 46.9 | 95.0 |
 | Fraser | D&C and Related Surgery | 32.9 | 2351.0 |
 | Fraser | Dental Surgery | 65.8 | 937.0 |
@@ -418,8 +416,8 @@ Rows returned: 484
 | Fraser | Hip Replacement | 170.1 | 1689.0 |
 | Fraser | Kidney/Bladder Stone Removal | 21.0 | 692.0 |
 | Fraser | Knee - ACL Repair | 39.2 | 569.0 |
-| Fraser | Knee Arthroscopy | 32.9 | 407.0 |
 | Fraser | Knee - Meniscectomy | 56.0 | 356.0 |
+| Fraser | Knee Arthroscopy | 32.9 | 407.0 |
 | Fraser | Knee Replacement | 207.9 | 3188.0 |
 | Fraser | Laparoscopy | 44.1 | 292.0 |
 | Fraser | Laparotomy | 32.2 | 78.0 |
@@ -462,8 +460,6 @@ Rows returned: 484
 | Fraser | Vascular Surgery - Other | 23.8 | 383.0 |
 | Fraser | Wound/Laceration Care | 28.7 | 507.0 |
 | Interior | Abdominoplasty | 63.0 | 22.0 |
-| Interior | All Other Procedures | 35.7 | 1207.0 |
-| Interior | All Procedures | 49.0 | 54863.0 |
 | Interior | Aortic Aneurysm Repair | 23.1 | 119.0 |
 | Interior | Appendectomy | 42.7 | 71.0 |
 | Interior | Bariatric Surgery |  |  |
@@ -473,12 +469,12 @@ Rows returned: 484
 | Interior | Breast Biopsy | 27.3 | 168.0 |
 | Interior | Breast Reconstruction | 62.3 | 248.0 |
 | Interior | Breast Reduction | 126.7 | 422.0 |
+| Interior | CSF Drainage |  |  |
 | Interior | Cataract Surgery | 35.0 | 15794.0 |
 | Interior | Cholecystectomy | 49.0 | 955.0 |
 | Interior | Colostomy/Ileostomy | 46.2 | 167.0 |
 | Interior | Cone Biopsy | 25.2 | 106.0 |
 | Interior | Cranial Surgery | 13.3 | 182.0 |
-| Interior | CSF Drainage |  |  |
 | Interior | Cyst/Ganglion Removal | 70.0 | 153.0 |
 | Interior | D&C and Related Surgery | 37.1 | 926.0 |
 | Interior | Dental Surgery | 41.3 | 1904.0 |
@@ -501,8 +497,8 @@ Rows returned: 484
 | Interior | Hip Replacement | 140.0 | 2295.0 |
 | Interior | Kidney/Bladder Stone Removal | 34.3 | 751.0 |
 | Interior | Knee - ACL Repair | 60.9 | 535.0 |
-| Interior | Knee Arthroscopy | 44.8 | 447.0 |
 | Interior | Knee - Meniscectomy | 70.7 | 711.0 |
+| Interior | Knee Arthroscopy | 44.8 | 447.0 |
 | Interior | Knee Replacement | 156.1 | 3173.0 |
 | Interior | Laparoscopy | 39.9 | 159.0 |
 | Interior | Laparotomy | 28.7 | 34.0 |
@@ -546,8 +542,6 @@ Rows returned: 484
 | Interior | Vascular Surgery - Other | 15.4 | 282.0 |
 | Interior | Wound/Laceration Care | 11.2 | 191.0 |
 | Northern | Abdominoplasty | 44.8 | 42.0 |
-| Northern | All Other Procedures | 69.3 | 1218.0 |
-| Northern | All Procedures | 65.1 | 17240.0 |
 | Northern | Aortic Aneurysm Repair | 70.7 | 18.0 |
 | Northern | Appendectomy | 39.2 | 17.0 |
 | Northern | Bariatric Surgery |  |  |
@@ -557,11 +551,11 @@ Rows returned: 484
 | Northern | Breast Biopsy | 27.3 | 28.0 |
 | Northern | Breast Reconstruction | 35.7 | 71.0 |
 | Northern | Breast Reduction | 60.9 | 142.0 |
+| Northern | CSF Drainage |  |  |
 | Northern | Cataract Surgery | 79.1 | 3835.0 |
 | Northern | Cholecystectomy | 46.9 | 417.0 |
 | Northern | Colostomy/Ileostomy | 88.2 | 45.0 |
 | Northern | Cone Biopsy | 25.2 | 108.0 |
-| Northern | CSF Drainage |  |  |
 | Northern | Cyst/Ganglion Removal | 64.4 | 122.0 |
 | Northern | D&C and Related Surgery | 44.8 | 280.0 |
 | Northern | Dental Surgery | 44.1 | 1023.0 |
@@ -584,8 +578,8 @@ Rows returned: 484
 | Northern | Hip Replacement | 245.0 | 547.0 |
 | Northern | Kidney/Bladder Stone Removal | 84.7 | 31.0 |
 | Northern | Knee - ACL Repair | 93.8 | 86.0 |
-| Northern | Knee Arthroscopy | 22.4 | 140.0 |
 | Northern | Knee - Meniscectomy | 34.3 | 127.0 |
+| Northern | Knee Arthroscopy | 22.4 | 140.0 |
 | Northern | Knee Replacement | 375.9 | 1023.0 |
 | Northern | Laparoscopy | 38.5 | 82.0 |
 | Northern | Laparotomy | 20.3 | 12.0 |
@@ -623,8 +617,6 @@ Rows returned: 484
 | Northern | Vascular Surgery - Other | 16.8 | 140.0 |
 | Northern | Wound/Laceration Care | 20.3 | 65.0 |
 | Provincial Health Services Authority | Abdominoplasty |  |  |
-| Provincial Health Services Authority | All Other Procedures | 21.0 | 1508.0 |
-| Provincial Health Services Authority | All Procedures | 49.0 | 12859.0 |
 | Provincial Health Services Authority | Appendectomy | 48.3 | 11.0 |
 | Provincial Health Services Authority | Biopsy in OR | 7.0 | 235.0 |
 | Provincial Health Services Authority | Bladder Surgery | 21.7 | 30.0 |
@@ -632,12 +624,12 @@ Rows returned: 484
 | Provincial Health Services Authority | Breast Biopsy | 13.3 | 105.0 |
 | Provincial Health Services Authority | Breast Reconstruction |  |  |
 | Provincial Health Services Authority | Breast Reduction |  |  |
+| Provincial Health Services Authority | CSF Drainage | 4.9 | 49.0 |
 | Provincial Health Services Authority | Cataract Surgery | 42.0 | 36.0 |
 | Provincial Health Services Authority | Cholecystectomy | 37.8 | 14.0 |
 | Provincial Health Services Authority | Colostomy/Ileostomy | 30.8 | 25.0 |
 | Provincial Health Services Authority | Cone Biopsy | 23.8 | 20.0 |
 | Provincial Health Services Authority | Cranial Surgery | 7.7 | 93.0 |
-| Provincial Health Services Authority | CSF Drainage | 4.9 | 49.0 |
 | Provincial Health Services Authority | Cyst/Ganglion Removal | 87.5 | 72.0 |
 | Provincial Health Services Authority | D&C and Related Surgery | 7.0 | 658.0 |
 | Provincial Health Services Authority | Dental Surgery | 76.3 | 1284.0 |
@@ -658,8 +650,8 @@ Rows returned: 484
 | Provincial Health Services Authority | Hip Replacement |  | 0.0 |
 | Provincial Health Services Authority | Kidney/Bladder Stone Removal |  |  |
 | Provincial Health Services Authority | Knee - ACL Repair | 55.3 | 81.0 |
-| Provincial Health Services Authority | Knee Arthroscopy | 6.3 | 28.0 |
 | Provincial Health Services Authority | Knee - Meniscectomy | 14.7 | 17.0 |
+| Provincial Health Services Authority | Knee Arthroscopy | 6.3 | 28.0 |
 | Provincial Health Services Authority | Knee Replacement |  |  |
 | Provincial Health Services Authority | Laparoscopy | 98.0 | 51.0 |
 | Provincial Health Services Authority | Laparotomy | 11.9 | 38.0 |
@@ -697,8 +689,6 @@ Rows returned: 484
 | Provincial Health Services Authority | Varicose Veins Ligation/Stripping |  |  |
 | Provincial Health Services Authority | Vascular Surgery - Other | 6.3 | 325.0 |
 | Provincial Health Services Authority | Wound/Laceration Care | 20.3 | 167.0 |
-| Vancouver Coastal | All Other Procedures | 28.0 | 2393.0 |
-| Vancouver Coastal | All Procedures | 37.1 | 67970.0 |
 | Vancouver Coastal | Aortic Aneurysm Repair | 21.7 | 140.0 |
 | Vancouver Coastal | Appendectomy | 42.0 | 105.0 |
 | Vancouver Coastal | Bariatric Surgery | 39.2 | 323.0 |
@@ -708,12 +698,12 @@ Rows returned: 484
 | Vancouver Coastal | Breast Biopsy | 30.8 | 273.0 |
 | Vancouver Coastal | Breast Reconstruction | 27.3 | 454.0 |
 | Vancouver Coastal | Breast Reduction | 65.1 | 401.0 |
+| Vancouver Coastal | CSF Drainage | 6.3 | 34.0 |
 | Vancouver Coastal | Cataract Surgery | 35.0 | 19569.0 |
 | Vancouver Coastal | Cholecystectomy | 44.1 | 1031.0 |
 | Vancouver Coastal | Colostomy/Ileostomy | 32.9 | 209.0 |
 | Vancouver Coastal | Cone Biopsy | 21.7 | 39.0 |
 | Vancouver Coastal | Cranial Surgery | 18.9 | 644.0 |
-| Vancouver Coastal | CSF Drainage | 6.3 | 34.0 |
 | Vancouver Coastal | Cyst/Ganglion Removal | 58.8 | 181.0 |
 | Vancouver Coastal | D&C and Related Surgery | 28.0 | 604.0 |
 | Vancouver Coastal | Dental Surgery | 226.1 | 365.0 |
@@ -736,8 +726,8 @@ Rows returned: 484
 | Vancouver Coastal | Hip Replacement | 111.3 | 1878.0 |
 | Vancouver Coastal | Kidney/Bladder Stone Removal | 22.4 | 1034.0 |
 | Vancouver Coastal | Knee - ACL Repair | 42.7 | 792.0 |
-| Vancouver Coastal | Knee Arthroscopy | 30.8 | 548.0 |
 | Vancouver Coastal | Knee - Meniscectomy | 37.1 | 254.0 |
+| Vancouver Coastal | Knee Arthroscopy | 30.8 | 548.0 |
 | Vancouver Coastal | Knee Replacement | 130.9 | 2636.0 |
 | Vancouver Coastal | Laparoscopy | 14.0 | 234.0 |
 | Vancouver Coastal | Laparotomy | 32.2 | 81.0 |
@@ -779,8 +769,6 @@ Rows returned: 484
 | Vancouver Coastal | Vascular Surgery - Other | 23.1 | 327.0 |
 | Vancouver Coastal | Wound/Laceration Care | 7.7 | 223.0 |
 | Vancouver Island | Abdominoplasty | 128.8 | 86.0 |
-| Vancouver Island | All Other Procedures | 35.7 | 1490.0 |
-| Vancouver Island | All Procedures | 55.3 | 57295.0 |
 | Vancouver Island | Aortic Aneurysm Repair | 30.8 | 51.0 |
 | Vancouver Island | Appendectomy | 34.3 | 65.0 |
 | Vancouver Island | Bariatric Surgery | 219.1 | 193.0 |
@@ -790,12 +778,12 @@ Rows returned: 484
 | Vancouver Island | Breast Biopsy | 23.1 | 97.0 |
 | Vancouver Island | Breast Reconstruction | 37.1 | 194.0 |
 | Vancouver Island | Breast Reduction | 77.7 | 443.0 |
+| Vancouver Island | CSF Drainage |  |  |
 | Vancouver Island | Cataract Surgery | 55.3 | 16183.0 |
 | Vancouver Island | Cholecystectomy | 41.3 | 791.0 |
 | Vancouver Island | Colostomy/Ileostomy | 53.2 | 118.0 |
 | Vancouver Island | Cone Biopsy | 23.8 | 82.0 |
 | Vancouver Island | Cranial Surgery | 16.1 | 101.0 |
-| Vancouver Island | CSF Drainage |  |  |
 | Vancouver Island | Cyst/Ganglion Removal | 51.8 | 295.0 |
 | Vancouver Island | D&C and Related Surgery | 48.3 | 375.0 |
 | Vancouver Island | Dental Surgery | 90.3 | 2440.0 |
@@ -818,8 +806,8 @@ Rows returned: 484
 | Vancouver Island | Hip Replacement | 114.1 | 2109.0 |
 | Vancouver Island | Kidney/Bladder Stone Removal | 25.9 | 785.0 |
 | Vancouver Island | Knee - ACL Repair | 86.1 | 430.0 |
-| Vancouver Island | Knee Arthroscopy | 70.7 | 827.0 |
 | Vancouver Island | Knee - Meniscectomy | 74.9 | 164.0 |
+| Vancouver Island | Knee Arthroscopy | 70.7 | 827.0 |
 | Vancouver Island | Knee Replacement | 139.3 | 2676.0 |
 | Vancouver Island | Laparoscopy | 76.3 | 163.0 |
 | Vancouver Island | Laparotomy | 32.9 | 8.0 |
@@ -896,7 +884,7 @@ Rows returned: 20
 
 Audience: Executive
 
-Rows returned: 81
+Rows returned: 79
 
 | procedure_name | vch_median | bc_other_avg_median | gap_days |
 | --- | --- | --- | --- |
@@ -934,13 +922,11 @@ Rows returned: 81
 | D&C and Related Surgery | 28.0 | 34.0 | -6.0 |
 | Fracture Repair | 4.2 | 13.3 | -9.1 |
 | Gastrostomy/Jejunostomy | 2.1 | 11.7 | -9.6 |
-| All Other Procedures | 28.0 | 37.8 | -9.8 |
 | Excision Lesion/Tumour | 30.1 | 40.7 | -10.6 |
 | Lung Surgery | 16.1 | 27.7 | -11.6 |
 | Knee - Meniscectomy | 37.1 | 50.1 | -13.0 |
 | Hernia Repair - Abdominal | 55.3 | 68.6 | -13.3 |
 | Male Reproductive Surgery | 63.7 | 77.6 | -13.9 |
-| All Procedures | 37.1 | 51.1 | -14.0 |
 | Scope of Chest | 9.1 | 23.3 | -14.2 |
 | Vascular Bypass Graft - Non Cardiac | 11.9 | 26.1 | -14.2 |
 | Cataract Surgery | 35.0 | 49.3 | -14.3 |
@@ -986,7 +972,7 @@ Rows returned: 81
 
 Audience: Operational
 
-Rows returned: 401
+Rows returned: 383
 
 | hospital | procedure_name | p90_wait_days | median_wait_days | case_volume |
 | --- | --- | --- | --- | --- |
@@ -1061,7 +1047,6 @@ Rows returned: 401
 | Lions Gate Hospital | Other Joint Reconstruction | 310.1 | 61.6 | 72 |
 | Richmond Hospital | Hernia Repair - Abdominal | 305.2 | 111.3 | 410 |
 | Richmond Hospital | Varicose Veins Ligation/Stripping | 299.6 | 205.1 | 58 |
-| St. Paul's Hospital | All Procedures | 289.8 | 35.0 | 8854 |
 | Mount Saint Joseph Hospital | Other Eye Surgery | 289.1 | 46.9 | 1237 |
 | Mount Saint Joseph Hospital | Nasal Surgery | 288.4 | 99.4 | 244 |
 | Mount Saint Joseph Hospital | Hernia Repair - Abdominal | 279.3 | 62.3 | 699 |
@@ -1073,10 +1058,8 @@ Rows returned: 401
 | UBC Health Sciences Centre Hospital | Other Joint Reconstruction | 267.4 | 86.8 | 47 |
 | UBC Health Sciences Centre Hospital | Knee Replacement | 265.3 | 105.0 | 1166 |
 | Richmond Hospital | Tonsillectomy/Adenoidectomy | 263.2 | 119.7 | 166 |
-| Richmond Hospital | All Procedures | 261.1 | 60.9 | 6642 |
 | Richmond Hospital | Vaginal Repair | 261.1 | 111.3 | 11 |
 | Mount Saint Joseph Hospital | Myringotomy | 260.4 | 35.7 | 9 |
-| UBC Health Sciences Centre Hospital | All Other Procedures | 259.7 | 63.0 | 283 |
 | Mount Saint Joseph Hospital | Wound/Laceration Care | 257.6 | 49.7 | 17 |
 | Vancouver General Hospital | Mastoidectomy | 257.6 | 20.3 | 6 |
 | Mount Saint Joseph Hospital | Examination Under Anaesthetic | 255.5 | 41.3 | 134 |
@@ -1092,7 +1075,6 @@ Rows returned: 401
 | Lions Gate Hospital | Cyst/Ganglion Removal | 242.2 | 83.3 | 31 |
 | Mount Saint Joseph Hospital | Cholecystectomy | 241.5 | 46.9 | 240 |
 | Squamish General Hospital | Other Orthopaedic Surgery | 240.8 | 36.4 | 92 |
-| UBC Health Sciences Centre Hospital | All Procedures | 240.8 | 63.0 | 7884 |
 | Richmond Hospital | Fallopian Tube/Ovarian Surgery | 240.1 | 63.7 | 33 |
 | St. Paul's Hospital | Other Orthopaedic Surgery | 238.7 | 34.3 | 569 |
 | Vancouver General Hospital | Thyroidectomy | 236.6 | 46.2 | 136 |
@@ -1116,7 +1098,6 @@ Rows returned: 401
 | Mount Saint Joseph Hospital | Skin Tumour Removal | 212.8 | 55.3 | 97 |
 | St. Paul's Hospital | Thyroidectomy | 212.8 | 27.3 | 283 |
 | Squamish General Hospital | Hand/Wrist Surgery | 211.4 | 81.2 | 7 |
-| St. Paul's Hospital | All Other Procedures | 210.0 | 23.8 | 472 |
 | Richmond Hospital | Male Reproductive Surgery | 209.3 | 70.7 | 107 |
 | St. Paul's Hospital | Hernia Repair - Abdominal | 209.3 | 84.0 | 269 |
 | St. Paul's Hospital | Ligament Surgery | 208.6 | 11.9 | 74 |
@@ -1137,7 +1118,6 @@ Rows returned: 401
 | UBC Health Sciences Centre Hospital | Skin Tumour Removal | 191.1 | 39.9 | 371 |
 | St. Paul's Hospital | Excision Lesion/Tumour | 190.4 | 34.3 | 230 |
 | Richmond Hospital | Other Ear Surgery | 189.7 | 121.8 | 8 |
-| qathet General Hospital | All Procedures | 189.0 | 51.8 | 1046 |
 | UBC Health Sciences Centre Hospital | Uterine Surgery | 189.0 | 77.7 | 297 |
 | Vancouver General Hospital | Nasal Surgery | 188.3 | 34.3 | 27 |
 | UBC Health Sciences Centre Hospital | Knee - ACL Repair | 186.9 | 51.8 | 278 |
@@ -1146,12 +1126,9 @@ Rows returned: 401
 | Lions Gate Hospital | Nerve Surgery | 183.4 | 28.0 | 50 |
 | Vancouver General Hospital | Lipectomy | 183.4 | 44.8 | 10 |
 | UBC Health Sciences Centre Hospital | Thyroidectomy | 182.7 | 35.0 | 17 |
-| Lions Gate Hospital | All Procedures | 179.9 | 37.1 | 10404 |
 | Mount Saint Joseph Hospital | Male Reproductive Surgery | 177.8 | 79.1 | 126 |
-| Squamish General Hospital | All Procedures | 177.1 | 30.1 | 1420 |
 | Richmond Hospital | Knee Arthroscopy | 176.4 | 32.2 | 156 |
 | UBC Health Sciences Centre Hospital | Appendectomy | 176.4 | 49.7 | 19 |
-| Mount Saint Joseph Hospital | All Procedures | 175.7 | 32.2 | 16261 |
 | UBC Health Sciences Centre Hospital | Excision Lesion/Tumour | 175.7 | 63.7 | 107 |
 | Vancouver General Hospital | Fallopian Tube/Ovarian Surgery | 175.7 | 37.1 | 102 |
 | St. Paul's Hospital | Cholecystectomy | 172.9 | 74.9 | 61 |
@@ -1164,17 +1141,15 @@ Rows returned: 401
 | Richmond Hospital | Skin Surgery | 167.3 | 28.7 | 96 |
 | Richmond Hospital | Uterine Surgery | 167.3 | 63.0 | 413 |
 | Richmond Hospital | Bariatric Surgery | 165.9 | 39.2 | 322 |
-| qathet General Hospital | Other Eye Surgery | 165.2 | 56.7 | 15 |
 | UBC Health Sciences Centre Hospital | Male Reproductive Surgery | 165.2 | 60.2 | 226 |
+| qathet General Hospital | Other Eye Surgery | 165.2 | 56.7 | 15 |
 | Mount Saint Joseph Hospital | Nerve Surgery | 163.8 | 49.0 | 11 |
 | St. Paul's Hospital | Uterine Surgery | 163.8 | 41.3 | 720 |
 | St. Paul's Hospital | Spinal/Back Surgery | 163.1 | 30.8 | 183 |
 | Vancouver General Hospital | Colostomy/Ileostomy | 163.1 | 34.3 | 34 |
-| Richmond Hospital | All Other Procedures | 162.4 | 51.1 | 234 |
 | Mount Saint Joseph Hospital | Parotidectomy | 161.0 | 28.0 | 15 |
 | UBC Health Sciences Centre Hospital | Knee Arthroscopy | 161.0 | 42.7 | 28 |
 | Lions Gate Hospital | Breast Biopsy | 160.3 | 21.7 | 46 |
-| Sechelt Hospital/Shíshálh Hospital | All Procedures | 160.3 | 63.0 | 1511 |
 | UBC Health Sciences Centre Hospital | Tonsillectomy/Adenoidectomy | 160.3 | 113.4 | 12 |
 | Vancouver General Hospital | Prostate Surgery | 160.3 | 69.3 | 315 |
 | Lions Gate Hospital | Rectal Surgery | 158.9 | 25.2 | 27 |
@@ -1209,7 +1184,6 @@ Rows returned: 401
 | Lions Gate Hospital | Vaginal Repair | 139.3 | 42.7 | 48 |
 | Richmond Hospital | Bladder Surgery | 139.3 | 23.8 | 181 |
 | St. Paul's Hospital | Male Reproductive Surgery | 139.3 | 46.9 | 61 |
-| Vancouver General Hospital | All Procedures | 137.9 | 28.0 | 13948 |
 | Vancouver General Hospital | Cataract Surgery | 137.9 | 30.1 | 4801 |
 | Vancouver General Hospital | Ligament Surgery | 134.4 | 43.4 | 10 |
 | Vancouver General Hospital | Appendectomy | 132.3 | 90.3 | 5 |
@@ -1227,13 +1201,10 @@ Rows returned: 401
 | UBC Health Sciences Centre Hospital | Ligament Surgery | 119.0 | 91.7 | 5 |
 | Lions Gate Hospital | Cataract Surgery | 118.3 | 35.7 | 3617 |
 | Richmond Hospital | Knee - Meniscectomy | 118.3 | 32.2 | 25 |
-| Sechelt Hospital/Shíshálh Hospital | All Other Procedures | 118.3 | 42.7 | 16 |
 | UBC Health Sciences Centre Hospital | Parotidectomy | 116.2 | 72.1 | 17 |
 | Mount Saint Joseph Hospital | Foreign Body Removal Surgery | 115.5 | 0.7 | 8 |
 | Mount Saint Joseph Hospital | Biopsy in OR | 114.1 | 28.0 | 52 |
 | Squamish General Hospital | Knee Arthroscopy | 112.0 | 23.8 | 161 |
-| Vancouver General Hospital | All Other Procedures | 112.0 | 23.8 | 980 |
-| Lions Gate Hospital | All Other Procedures | 111.3 | 18.2 | 225 |
 | Mount Saint Joseph Hospital | Other Urology Surgery | 110.6 | 25.2 | 160 |
 | Vancouver General Hospital | Other Urology Surgery | 109.9 | 44.8 | 201 |
 | Squamish General Hospital | Rectal Surgery | 109.2 | 18.2 | 16 |
@@ -1244,10 +1215,8 @@ Rows returned: 401
 | Mount Saint Joseph Hospital | Lens & Vitreous (non-cataract) Surgery | 105.0 | 13.3 | 1265 |
 | St. Paul's Hospital | Vaginal Repair | 105.0 | 20.3 | 36 |
 | Vancouver General Hospital | Endarterectomy | 105.0 | 18.2 | 62 |
-| Mount Saint Joseph Hospital | All Other Procedures | 104.3 | 27.3 | 129 |
 | Vancouver General Hospital | Excision Lesion/Tumour | 104.3 | 27.3 | 708 |
 | St. Paul's Hospital | Fallopian Tube/Ovarian Surgery | 103.6 | 35.7 | 113 |
-| qathet General Hospital | All Other Procedures | 102.9 | 49.0 | 22 |
 | Squamish General Hospital | Cyst/Ganglion Removal | 102.9 | 21.0 | 15 |
 | Lions Gate Hospital | Appendectomy | 102.2 | 39.2 | 17 |
 | Mount Saint Joseph Hospital | Excision Lesion/Tumour | 100.8 | 23.1 | 69 |
@@ -1257,23 +1226,23 @@ Rows returned: 401
 | Richmond Hospital | Breast Biopsy | 99.4 | 32.9 | 32 |
 | Richmond Hospital | Wound/Laceration Care | 97.3 | 9.8 | 34 |
 | St. Paul's Hospital | Tendon Surgery | 96.6 | 7.7 | 229 |
-| qathet General Hospital | Biopsy in OR | 95.9 | 30.8 | 18 |
 | Richmond Hospital | Ligament Surgery | 95.9 | 7.7 | 8 |
 | St. Paul's Hospital | Nerve Surgery | 95.9 | 21.7 | 103 |
+| qathet General Hospital | Biopsy in OR | 95.9 | 30.8 | 18 |
 | Lions Gate Hospital | Uterine Surgery | 93.8 | 35.0 | 701 |
-| qathet General Hospital | Cyst/Ganglion Removal | 93.8 | 58.8 | 11 |
 | Vancouver General Hospital | Bladder Surgery | 93.8 | 42.0 | 131 |
 | Vancouver General Hospital | Kidney/Bladder Stone Removal | 93.8 | 28.0 | 397 |
+| qathet General Hospital | Cyst/Ganglion Removal | 93.8 | 58.8 | 11 |
 | Vancouver General Hospital | Other Joint Reconstruction | 93.1 | 44.8 | 10 |
 | Mount Saint Joseph Hospital | Other Orthopaedic Surgery | 92.4 | 14.7 | 28 |
 | UBC Health Sciences Centre Hospital | Kidney/Bladder Stone Removal | 91.0 | 35.7 | 131 |
 | Vancouver General Hospital | Nerve Surgery | 90.3 | 39.9 | 67 |
 | Squamish General Hospital | Hernia Repair - Abdominal | 88.2 | 30.8 | 256 |
-| qathet General Hospital | D&C and Related Surgery | 86.8 | 51.8 | 47 |
 | UBC Health Sciences Centre Hospital | Bowel Resection | 86.8 | 67.9 | 10 |
+| qathet General Hospital | D&C and Related Surgery | 86.8 | 51.8 | 47 |
 | Mount Saint Joseph Hospital | Breast Reconstruction | 85.4 | 32.2 | 199 |
-| qathet General Hospital | Fallopian Tube/Ovarian Surgery | 85.4 | 41.3 | 18 |
 | Richmond Hospital | Tendon Surgery | 85.4 | 4.2 | 34 |
+| qathet General Hospital | Fallopian Tube/Ovarian Surgery | 85.4 | 41.3 | 18 |
 | Lions Gate Hospital | Other Urology Surgery | 84.7 | 28.0 | 130 |
 | qathet General Hospital | Hernia Repair - Abdominal | 84.7 | 49.0 | 116 |
 | Squamish General Hospital | Skin Tumour Removal | 84.0 | 37.8 | 39 |
@@ -1299,16 +1268,16 @@ Rows returned: 401
 | Vancouver General Hospital | Cranial Surgery | 74.9 | 14.7 | 434 |
 | Richmond Hospital | Kidney/Bladder Stone Removal | 74.2 | 33.6 | 18 |
 | Lions Gate Hospital | Fracture Repair | 73.5 | 4.2 | 48 |
-| qathet General Hospital | Cholecystectomy | 73.5 | 50.4 | 26 |
 | Squamish General Hospital | Male Reproductive Surgery | 73.5 | 56.0 | 5 |
+| qathet General Hospital | Cholecystectomy | 73.5 | 50.4 | 26 |
 | Squamish General Hospital | D&C and Related Surgery | 72.8 | 16.8 | 34 |
+| Sechelt Hospital/Shíshálh Hospital | Uterine Surgery | 70.7 | 18.2 | 72 |
 | qathet General Hospital | Uterine Surgery | 70.7 | 40.6 | 20 |
 | qathet General Hospital | Varicose Veins Ligation/Stripping | 70.7 | 46.2 | 6 |
-| Sechelt Hospital/Shíshálh Hospital | Uterine Surgery | 70.7 | 18.2 | 72 |
 | Sechelt Hospital/Shíshálh Hospital | Vaginal Repair | 70.0 | 49.7 | 11 |
 | Lions Gate Hospital | Cranial Surgery | 69.3 | 14.7 | 49 |
-| qathet General Hospital | Skin Tumour Removal | 69.3 | 24.5 | 14 |
 | Sechelt Hospital/Shíshálh Hospital | Dental Surgery | 69.3 | 34.3 | 32 |
+| qathet General Hospital | Skin Tumour Removal | 69.3 | 24.5 | 14 |
 | St. Paul's Hospital | Breast Reconstruction | 66.5 | 14.0 | 20 |
 | Lions Gate Hospital | Bladder Surgery | 65.1 | 21.0 | 219 |
 | St. Paul's Hospital | Appendectomy | 64.4 | 20.3 | 20 |
@@ -1331,8 +1300,8 @@ Rows returned: 401
 | Vancouver General Hospital | Aortic Aneurysm Repair | 58.1 | 14.7 | 89 |
 | Vancouver General Hospital | Vascular Bypass Graft - Non Cardiac | 58.1 | 13.3 | 64 |
 | qathet General Hospital | Hand/Wrist Surgery | 56.7 | 37.1 | 10 |
-| qathet General Hospital | Other Orthopaedic Surgery | 56.0 | 39.9 | 6 |
 | Sechelt Hospital/Shíshálh Hospital | Rectal Surgery | 56.0 | 20.3 | 20 |
+| qathet General Hospital | Other Orthopaedic Surgery | 56.0 | 39.9 | 6 |
 | UBC Health Sciences Centre Hospital | Nasal Surgery | 55.3 | 18.2 | 258 |
 | Vancouver General Hospital | Breast Reduction | 55.3 | 20.3 | 7 |
 | Vancouver General Hospital | Sinus Surgery | 55.3 | 18.2 | 93 |
@@ -1357,11 +1326,10 @@ Rows returned: 401
 | St. Paul's Hospital | Wound/Laceration Care | 43.4 | 7.0 | 139 |
 | Sechelt Hospital/Shíshálh Hospital | Hand/Wrist Surgery | 42.0 | 14.7 | 23 |
 | Mount Saint Joseph Hospital | Mastectomy | 41.3 | 18.2 | 636 |
-| Squamish General Hospital | All Other Procedures | 40.6 | 8.4 | 32 |
 | Lions Gate Hospital | Biopsy in OR | 39.9 | 14.0 | 48 |
-| qathet General Hospital | Bowel Resection | 39.2 | 21.7 | 11 |
 | Sechelt Hospital/Shíshálh Hospital | Skin Tumour Removal | 39.2 | 14.7 | 106 |
 | St. Paul's Hospital | Mastectomy | 39.2 | 19.6 | 16 |
+| qathet General Hospital | Bowel Resection | 39.2 | 21.7 | 11 |
 | Sechelt Hospital/Shíshálh Hospital | Bowel Resection | 38.5 | 24.5 | 8 |
 | qathet General Hospital | Vascular Surgery - Other | 37.8 | 11.9 | 10 |
 | Vancouver General Hospital | Examination Under Anaesthetic | 36.4 | 19.6 | 6 |
@@ -1371,8 +1339,8 @@ Rows returned: 401
 | St. Paul's Hospital | Vascular Bypass Graft - Non Cardiac | 33.6 | 7.0 | 44 |
 | St. Paul's Hospital | Lipectomy | 32.9 | 25.9 | 5 |
 | Lions Gate Hospital | Examination Under Anaesthetic | 32.2 | 9.8 | 11 |
-| qathet General Hospital | Mastectomy | 32.2 | 21.7 | 28 |
 | Vancouver General Hospital | Mastectomy | 32.2 | 14.7 | 42 |
+| qathet General Hospital | Mastectomy | 32.2 | 21.7 | 28 |
 | qathet General Hospital | Cone Biopsy | 31.5 | 20.3 | 9 |
 | Vancouver General Hospital | Wound/Laceration Care | 29.4 | 15.4 | 18 |
 | Mount Saint Joseph Hospital | Laparoscopy | 27.3 | 9.1 | 11 |
@@ -1400,36 +1368,36 @@ Rows returned: 30
 
 | health_authority | reporting_year | total_case_volume |
 | --- | --- | --- |
-| Fraser | 2020 | 124071 |
-| Fraser | 2021 | 140019 |
-| Fraser | 2022 | 149560 |
-| Fraser | 2023 | 152884 |
-| Fraser | 2024 | 158002 |
-| Interior | 2020 | 86634 |
-| Interior | 2021 | 89308 |
-| Interior | 2022 | 101025 |
-| Interior | 2023 | 104528 |
-| Interior | 2024 | 109717 |
-| Northern | 2020 | 26084 |
-| Northern | 2021 | 27403 |
-| Northern | 2022 | 29484 |
-| Northern | 2023 | 31182 |
-| Northern | 2024 | 34465 |
-| Provincial Health Services Authority | 2020 | 18682 |
-| Provincial Health Services Authority | 2021 | 19488 |
-| Provincial Health Services Authority | 2022 | 20934 |
-| Provincial Health Services Authority | 2023 | 24346 |
-| Provincial Health Services Authority | 2024 | 25694 |
-| Vancouver Coastal | 2020 | 117500 |
-| Vancouver Coastal | 2021 | 126062 |
-| Vancouver Coastal | 2022 | 127000 |
-| Vancouver Coastal | 2023 | 133942 |
-| Vancouver Coastal | 2024 | 135940 |
-| Vancouver Island | 2020 | 98187 |
-| Vancouver Island | 2021 | 107079 |
-| Vancouver Island | 2022 | 107012 |
-| Vancouver Island | 2023 | 108636 |
-| Vancouver Island | 2024 | 114589 |
+| Fraser | 2020 | 60984 |
+| Fraser | 2021 | 68803 |
+| Fraser | 2022 | 73462 |
+| Fraser | 2023 | 74935 |
+| Fraser | 2024 | 77499 |
+| Interior | 2020 | 42425 |
+| Interior | 2021 | 43709 |
+| Interior | 2022 | 49446 |
+| Interior | 2023 | 51178 |
+| Interior | 2024 | 53647 |
+| Northern | 2020 | 12729 |
+| Northern | 2021 | 13345 |
+| Northern | 2022 | 14342 |
+| Northern | 2023 | 14847 |
+| Northern | 2024 | 16007 |
+| Provincial Health Services Authority | 2020 | 8622 |
+| Provincial Health Services Authority | 2021 | 8638 |
+| Provincial Health Services Authority | 2022 | 9094 |
+| Provincial Health Services Authority | 2023 | 10796 |
+| Provincial Health Services Authority | 2024 | 11327 |
+| Vancouver Coastal | 2020 | 57051 |
+| Vancouver Coastal | 2021 | 61372 |
+| Vancouver Coastal | 2022 | 61604 |
+| Vancouver Coastal | 2023 | 64861 |
+| Vancouver Coastal | 2024 | 65577 |
+| Vancouver Island | 2020 | 47661 |
+| Vancouver Island | 2021 | 52154 |
+| Vancouver Island | 2022 | 52237 |
+| Vancouver Island | 2023 | 52931 |
+| Vancouver Island | 2024 | 55804 |
 
 ## K12 — Reporting coverage by source x geo level
 
