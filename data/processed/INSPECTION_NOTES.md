@@ -230,3 +230,26 @@ The largest latest-year BC vs Canada median gaps in CIHI are MRI Scan (+29.3 day
 ### Interpretation
 
 The loaded fact table passes the core integrity checks needed before dashboard work: no duplicate fact keys, no impossible numeric values, and no broken dimension references. The main reporting caveat is BC_MoH suppression/null volume handling plus expected metric missingness, which should be surfaced in the Data Quality Monitor tab rather than imputed.
+
+## Day 4 — EDA and analyst report sanity check (2026-05-24)
+
+### Artifacts generated
+
+| Artifact | Purpose |
+| --- | --- |
+| `data/processed/eda_summary.md` | Compact EDA tables for source counts, national snapshot, BC gaps, VCH long waits, and quality caveats. |
+| `reports/analyst_report.md` | Analyst-facing narrative report for dashboard planning and portfolio review. |
+| `notebooks/01_eda_wait_times.ipynb` | Interactive notebook entry point using the same EDA frames as the report generator. |
+
+### Key findings carried forward
+
+- National latest-year volume leaders are CT Scan, MRI Scan, Cataract Surgery, Radiation Therapy, Knee Replacement, and Hip Replacement.
+- The largest CIHI BC vs Canada median-wait gaps are MRI Scan (+29.3 days), Knee Replacement (+14.3 days), and CT Scan (+8.2 days).
+- Vancouver Coastal's longest latest-fiscal-year median waits are Dental Surgery (226.1 days), Varicose Veins Ligation/Stripping (193.2 days), and Other Ear Surgery (179.9 days).
+- Dashboard copy should label BC_MoH null case volume clearly: 9,688 rows, or 17.6%, have null case volume due to suppressed or unavailable values.
+
+### Dashboard implications
+
+- Executive Summary should foreground BC vs Canada gaps and one caveat line about missingness.
+- Operational Drilldown should use the Vancouver Coastal procedure table and later add hospital-level filtering from K10.
+- Data Quality Monitor should expose missing median/p90 rates and suppressed/null case-volume counts before users interpret volumes.
