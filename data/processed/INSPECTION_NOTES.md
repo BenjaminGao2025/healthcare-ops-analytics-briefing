@@ -202,3 +202,31 @@ Interpretation: BC wait-time percentiles are not 7x larger than CIHI after the w
 ### Sanity narrative
 
 The largest latest-year BC vs Canada median gaps in CIHI are MRI Scan (+29.3 days), Knee Replacement (+14.3 days), and CT Scan (+8.2 days), which makes the executive gap KPI focus on access-sensitive diagnostic and orthopedic areas. In latest-year BC_MoH data for Vancouver Coastal, the longest median waits are Dental Surgery (226.1 days), Varicose Veins Ligation/Stripping (193.2 days), and Other Ear Surgery (179.9 days), which are plausible non-urgent surgical categories for an operational drilldown.
+
+## Day 3 — Data quality sanity check (2026-05-24)
+
+### Row count per data quality check
+
+| Check | Rows returned |
+| --- | ---: |
+| DQ01 | 33 |
+| DQ02 | 2 |
+| DQ03 | 2 |
+| DQ04 | 5 |
+| DQ05 | 4 |
+| DQ06 | 2 |
+| DQ07 | 92 |
+| DQ08 | 2 |
+
+### Key results
+
+- Duplicate fact keys: 0 for both sources.
+- Out-of-range values: 0 negative waits, 0 negative case volumes, 0 p90 < median rows, and 0 benchmark percentages outside 0-100.
+- Broken dimension links / blank dimension names: 0 rows across procedure and geography checks.
+- Freshness: both CIHI and BC_MoH are `ok`; latest load timestamp is 2026-05-24 UTC.
+- Missingness: BC_MoH has 10,900 rows missing median/p90 waits (19.81%) and 9,688 rows with null case volume (17.61%); CIHI has 115 rows missing median waits (2.77%) and 17 rows missing case volume (0.41%).
+- Suppressed counts: BC_MoH has 9,688 suppressed case-volume rows preserved as NULL; CIHI has 0 suppressed count rows by this definition.
+
+### Interpretation
+
+The loaded fact table passes the core integrity checks needed before dashboard work: no duplicate fact keys, no impossible numeric values, and no broken dimension references. The main reporting caveat is BC_MoH suppression/null volume handling plus expected metric missingness, which should be surfaced in the Data Quality Monitor tab rather than imputed.

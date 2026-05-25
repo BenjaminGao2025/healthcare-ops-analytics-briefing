@@ -1,6 +1,6 @@
 PYTHON ?= python
 
-.PHONY: up down psql schema load kpis app test lint fmt
+.PHONY: up down psql schema load kpis quality app test lint fmt
 
 up:
 	docker compose up -d
@@ -19,6 +19,9 @@ load:
 
 kpis:
 	$(PYTHON) -m src.kpi
+
+quality:
+	$(PYTHON) -m src.quality
 
 app:
 	streamlit run app/streamlit_app.py

@@ -1,6 +1,6 @@
 # Data Dictionary
 
-Version: v0.3 — 2026-05-24
+Version: v0.4 — 2026-05-24
 
 ## Tables
 
@@ -53,6 +53,19 @@ Version: v0.3 — 2026-05-24
 | K10 | VCH hospital-level p90, latest fiscal year | Operational | BC_MoH | `hospital`, `procedure_name`, `p90_wait_days`, `median_wait_days`, `case_volume` | `sql/03_kpi_queries.sql` |
 | K11 | Case volume trend by HA, last 5 fiscal years | Operational | BC_MoH | `health_authority`, `reporting_year`, `total_case_volume` | `sql/03_kpi_queries.sql` |
 | K12 | Reporting coverage by source x geo level | Data Quality | CIHI / BC_MoH | `source_name`, `geo_type`, `latest_reporting_year`, `latest_reporting_period`, `n_procedures`, `n_rows` | `sql/03_kpi_queries.sql` |
+
+## Data Quality Check Catalog
+
+| ID | Name | Purpose | Key output columns | Query file |
+|---|---|---|---|---|
+| DQ01 | Row counts per source per year | Confirm source coverage and year-level load shape. | `source_name`, `reporting_year`, `row_count` | `sql/04_data_quality_checks.sql` |
+| DQ02 | Missing values per source | Quantify missing core metrics by source. | `source_name`, `total_rows`, `missing_*`, `missing_*_pct` | `sql/04_data_quality_checks.sql` |
+| DQ03 | Duplicate fact keys | Detect duplicate source/procedure/geography/year/period rows. | `source_name`, `duplicate_key_count`, `duplicate_row_count` | `sql/04_data_quality_checks.sql` |
+| DQ04 | Out-of-range values | Flag impossible waits, benchmark percentages, and volumes. | `issue_type`, `bad_row_count` | `sql/04_data_quality_checks.sql` |
+| DQ05 | Category drift and broken dimension links | Check missing dimension references and blank dimension names. | `issue_type`, `bad_row_count` | `sql/04_data_quality_checks.sql` |
+| DQ06 | Freshness by source | Warn when loaded data is older than 30 days. | `source_name`, `max_loaded_at`, `age_days`, `freshness_status` | `sql/04_data_quality_checks.sql` |
+| DQ07 | Reporting coverage by source and geography level | Show year-level row coverage by source and geography type. | `source_name`, `geo_type`, `reporting_year`, `n_procedures`, `n_rows` | `sql/04_data_quality_checks.sql` |
+| DQ08 | Suppressed count summary | Summarize BC suppressed case-volume rows preserved as null. | `source_name`, `total_rows`, `suppressed_case_volume_rows`, `suppressed_case_volume_pct` | `sql/04_data_quality_checks.sql` |
 
 ## Source coverage
 
