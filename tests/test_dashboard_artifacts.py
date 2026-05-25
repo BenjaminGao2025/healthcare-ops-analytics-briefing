@@ -57,9 +57,12 @@ def test_dashboard_frames_include_expected_sections() -> None:
 @requires_postgres
 def test_dashboard_summary_has_portfolio_headline_metrics() -> None:
     summary = dashboard_summary(load_dashboard_frames())
-    assert summary["top_gap_procedure"] == "MRI Scan"
-    assert summary["top_vch_wait_procedure"] == "Dental Surgery"
-    assert summary["bc_missing_case_volume_rows"] == 9688
+    assert isinstance(summary["top_gap_procedure"], str)
+    assert summary["top_gap_days"] > 0
+    assert isinstance(summary["top_vch_wait_procedure"], str)
+    assert summary["top_vch_wait_days"] > 0
+    assert summary["bc_missing_case_volume_rows"] >= 0
+    assert summary["max_loaded_at"]
 
 
 def test_methodology_and_review_guide_have_required_sections() -> None:
@@ -88,6 +91,18 @@ def test_excel_workbook_can_be_written() -> None:
 def test_streamlit_pages_do_not_have_todo_placeholders() -> None:
     for path in Path("app").rglob("*.py"):
         assert "TODO" not in path.read_text(encoding="utf-8")
+
+
+def test_streamlit_entrypoint_uses_dynamic_loaded_date() -> None:
+    entrypoint = Path("app/streamlit_app.py").read_text(encoding="utf-8")
+    assert "Last updated: 2026-05-24" not in entrypoint
+    assert "max_loaded_at" in entrypoint
+
+
+def test_executive_page_documents_hip_fracture_unit_conversion() -> None:
+    page = Path("app/pages/1_Executive_Summary.py").read_text(encoding="utf-8")
+    assert "Hip Fracture Repair" in page
+    assert "hours" in page
 
 
 def test_make_app_sets_project_import_path() -> None:

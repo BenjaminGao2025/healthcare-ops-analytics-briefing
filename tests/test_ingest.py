@@ -73,3 +73,20 @@ def test_p90_geq_median_where_both_present() -> None:
     with engine.connect() as conn:
         bad_rows = conn.execute(query).scalar_one()
     assert bad_rows == 0
+
+
+@requires_postgres
+def test_bc_health_authorities_have_bc_parent() -> None:
+    engine = create_engine(database_url(), pool_pre_ping=True)
+    query = text(
+        """
+        SELECT COUNT(*)
+        FROM dim_geography
+        WHERE geo_type = 'health_authority'
+          AND province_code = 'BC'
+          AND parent_geo_id IS NULL
+        """
+    )
+    with engine.connect() as conn:
+        orphan_ha_rows = conn.execute(query).scalar_one()
+    assert orphan_ha_rows == 0

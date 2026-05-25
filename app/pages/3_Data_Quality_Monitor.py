@@ -31,7 +31,7 @@ duplicates = frames["quality_duplicates"]
 col1, col2, col3 = st.columns(3)
 col1.metric("Duplicate rows", int(duplicates["duplicate_row_count"].sum()))
 col2.metric("Validity issues", int(validity["bad_row_count"].sum()))
-col3.metric("Freshness", ", ".join(sorted(set(freshness["freshness_status"]))))
+col3.metric("Load recency", ", ".join(sorted(set(freshness["freshness_status"]))))
 
 st.subheader("Missing core fields")
 missing_chart = missingness.melt(
@@ -58,7 +58,8 @@ with left:
     st.dataframe(validity, use_container_width=True, hide_index=True)
 
 with right:
-    st.subheader("Freshness")
+    st.subheader("Load recency")
+    st.caption("This check reflects database load timestamp, not source publication recency.")
     st.dataframe(freshness, use_container_width=True, hide_index=True)
 
 st.subheader("Suppressed or unavailable case volume")

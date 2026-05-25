@@ -1,6 +1,6 @@
 # Data Dictionary
 
-Version: v0.6 — 2026-05-24
+Version: v0.7 — 2026-05-24
 
 ## Tables
 
@@ -63,7 +63,7 @@ Version: v0.6 — 2026-05-24
 | DQ03 | Duplicate fact keys | Detect duplicate source/procedure/geography/year/period rows. | `source_name`, `duplicate_key_count`, `duplicate_row_count` | `sql/04_data_quality_checks.sql` |
 | DQ04 | Out-of-range values | Flag impossible waits, benchmark percentages, and volumes. | `issue_type`, `bad_row_count` | `sql/04_data_quality_checks.sql` |
 | DQ05 | Category drift and broken dimension links | Check missing dimension references and blank dimension names. | `issue_type`, `bad_row_count` | `sql/04_data_quality_checks.sql` |
-| DQ06 | Freshness by source | Warn when loaded data is older than 30 days. | `source_name`, `max_loaded_at`, `age_days`, `freshness_status` | `sql/04_data_quality_checks.sql` |
+| DQ06 | Load recency by source | Warn when loaded database rows are older than 30 days. This does not measure source publication recency. | `source_name`, `max_loaded_at`, `age_days`, `freshness_status` | `sql/04_data_quality_checks.sql` |
 | DQ07 | Reporting coverage by source and geography level | Show year-level row coverage by source and geography type. | `source_name`, `geo_type`, `reporting_year`, `n_procedures`, `n_rows` | `sql/04_data_quality_checks.sql` |
 | DQ08 | Suppressed count summary | Summarize BC suppressed case-volume rows preserved as null. | `source_name`, `total_rows`, `suppressed_case_volume_rows`, `suppressed_case_volume_pct` | `sql/04_data_quality_checks.sql` |
 
@@ -96,7 +96,7 @@ Version: v0.6 — 2026-05-24
 | `missingness` | DQ02 | Data Quality Monitor missingness chart. |
 | `duplicates` | DQ03 | Data Quality Monitor duplicate-key metric. |
 | `validity` | DQ04 | Data Quality Monitor impossible-value checks. |
-| `freshness` | DQ06 | Data Quality Monitor source freshness status. |
+| `freshness` | DQ06 | Data Quality Monitor load recency status. |
 | `suppressed_counts` | DQ08 | Data Quality Monitor suppressed/null case-volume metric. |
 
 ## Source coverage
@@ -111,6 +111,6 @@ Version: v0.6 — 2026-05-24
 - CIHI `Data year` includes standard April-September rows plus `FY` and `Q3Q4` suffixes. The loader keeps the leading year in `reporting_year` and stores the suffix in `reporting_period`; confirm this is the preferred reporting convention.
 - CIHI hip fracture repair uses hours for some wait metrics. The loader divides hours by 24 to fit `*_wait_days`; range sanity checks support the conversion, but the dashboard should likely display these procedures in hours for healthcare readers.
 - BC Surgical Wait Times has fiscal-year labels such as `2024/25`. The loader stores `2024` as `reporting_year` and `FY 2024/25` as `reporting_period`; verify this with the final reporting narrative.
-- BC Surgical Wait Times percentile values appear to be in weeks. The loader multiplies them by 7 to fit `*_wait_days`; range sanity checks support the conversion, but confirm against source metadata before final publication.
+- BC Surgical Wait Times percentile values are interpreted as weeks and multiplied by 7 to fit `*_wait_days`; range sanity checks support the conversion and the dashboard/methodology call out this unit assumption.
 - BC suppressed counts such as `<5` are stored as NULL rather than approximated, to avoid inventing case volume.
 - VCH Community Profiles are not loaded in Day 1; the profile PDF extraction plan still needs to be defined.

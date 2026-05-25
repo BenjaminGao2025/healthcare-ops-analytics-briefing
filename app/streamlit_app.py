@@ -33,8 +33,10 @@ try:
     col4.metric("Validity issues", summary["validity_issues"])
 except Exception as exc:  # pragma: no cover - Streamlit runtime fallback
     st.error(f"Dashboard data is unavailable: {exc}")
+    summary = None
 
-st.caption("Last updated: 2026-05-24")
+if summary:
+    st.caption(f"Data loaded: {summary['max_loaded_at']}")
 
 st.warning(
     "Data-source boundary: all data is public and aggregate. This project does not use "

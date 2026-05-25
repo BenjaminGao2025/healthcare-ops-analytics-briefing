@@ -187,6 +187,7 @@ JOIN dim_geography AS g ON g.geo_id = f.geo_id
 JOIN latest_year AS y ON y.reporting_year = f.reporting_year
 WHERE f.source_name = 'BC_MoH'
   AND g.geo_type = 'health_authority'
+  AND p.procedure_name NOT IN ('All Procedures', 'All Other Procedures')
 ORDER BY g.geo_name, p.procedure_name;
 
 -- K08 | VCH top 20 long-wait procedures, latest fiscal year | Operational
@@ -208,6 +209,7 @@ WHERE f.source_name = 'BC_MoH'
   AND g.geo_name = 'Vancouver Coastal'
   AND g.geo_type = 'health_authority'
   AND f.median_wait_days IS NOT NULL
+  AND p.procedure_name NOT IN ('All Procedures', 'All Other Procedures')
 ORDER BY f.median_wait_days DESC, p.procedure_name
 LIMIT 20;
 
@@ -223,11 +225,13 @@ vch AS (
     f.median_wait_days AS vch_median
   FROM fact_wait_time AS f
   JOIN dim_geography AS g ON g.geo_id = f.geo_id
+  JOIN dim_procedure AS p ON p.procedure_id = f.procedure_id
   JOIN latest_year AS y ON y.reporting_year = f.reporting_year
   WHERE f.source_name = 'BC_MoH'
     AND g.geo_name = 'Vancouver Coastal'
     AND g.geo_type = 'health_authority'
     AND f.median_wait_days IS NOT NULL
+    AND p.procedure_name NOT IN ('All Procedures', 'All Other Procedures')
 ),
 other_has AS (
   SELECT
@@ -235,11 +239,13 @@ other_has AS (
     AVG(f.median_wait_days) AS bc_other_avg_median
   FROM fact_wait_time AS f
   JOIN dim_geography AS g ON g.geo_id = f.geo_id
+  JOIN dim_procedure AS p ON p.procedure_id = f.procedure_id
   JOIN latest_year AS y ON y.reporting_year = f.reporting_year
   WHERE f.source_name = 'BC_MoH'
     AND g.geo_type = 'health_authority'
     AND g.geo_name <> 'Vancouver Coastal'
     AND f.median_wait_days IS NOT NULL
+    AND p.procedure_name NOT IN ('All Procedures', 'All Other Procedures')
   GROUP BY f.procedure_id
 )
 SELECT
@@ -278,6 +284,7 @@ JOIN vch ON vch.geo_id = g.parent_geo_id
 WHERE f.source_name = 'BC_MoH'
   AND g.geo_type = 'hospital'
   AND f.p90_wait_days IS NOT NULL
+  AND p.procedure_name NOT IN ('All Procedures', 'All Other Procedures')
 ORDER BY f.p90_wait_days DESC, g.geo_name, p.procedure_name;
 
 -- K11 | Case volume trend by HA, last 5 fiscal years | Operational
@@ -293,11 +300,13 @@ SELECT
   f.reporting_year,
   SUM(f.case_volume) AS total_case_volume
 FROM fact_wait_time AS f
+JOIN dim_procedure AS p ON p.procedure_id = f.procedure_id
 JOIN dim_geography AS g ON g.geo_id = f.geo_id
 JOIN latest_years AS y ON y.reporting_year = f.reporting_year
 WHERE f.source_name = 'BC_MoH'
   AND g.geo_type = 'health_authority'
   AND f.case_volume IS NOT NULL
+  AND p.procedure_name NOT IN ('All Procedures', 'All Other Procedures')
 GROUP BY g.geo_name, f.reporting_year
 ORDER BY g.geo_name, f.reporting_year;
 

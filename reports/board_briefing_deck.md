@@ -29,6 +29,6 @@
 
 ## Slide 6: Recommended Next Steps
 
-- Confirm source metadata assumptions.
+- Keep source unit assumptions visible in dashboard caveats.
 - Review dashboard copy with healthcare-domain readers.
 - Add deployment monitoring after Streamlit launch.

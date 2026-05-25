@@ -15,11 +15,13 @@ This portfolio project demonstrates how public aggregate healthcare wait-time da
 
 - CIHI national, provincial, and regional rows are normalized into shared procedure, geography, year, period, and KPI fields.
 - BC_MoH fiscal-year surgical rows are normalized into province, health authority, and hospital geographies.
-- BC percentile fields are treated as weeks and converted to days after range sanity checks.
+- BC_MoH percentile fields (`COMPLETED_50TH_PERCENTILE`, `COMPLETED_90TH_PERCENTILE`) are interpreted as weeks in the public export and converted to days; range checks against CIHI hip/knee procedure magnitudes are documented in `INSPECTION_NOTES.md`.
+- CIHI Hip Fracture Repair values reported in hours are converted to days for table consistency and called out in the Executive Summary.
 - Suppressed or unavailable case-volume values are preserved as nulls rather than estimated.
 
 ## Interpretation Limits
 
 - CIHI and BC_MoH are not perfect substitutes; they answer overlapping but different reporting questions.
 - Missing benchmark percentages and suppressed volumes should be visible in dashboard caveats.
+- Load recency reflects when the database was refreshed, not the source publication date.
 - Results are appropriate for portfolio demonstration and planning-style analytics, not for operational claims about live health-system performance.

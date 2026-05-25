@@ -46,6 +46,10 @@ st.plotly_chart(
 
 st.subheader("National latest-year access snapshot")
 st.dataframe(frames["executive_national"], use_container_width=True, hide_index=True)
+st.caption(
+    "Unit note: CIHI Hip Fracture Repair source values are reported in hours and "
+    "converted to days for table consistency."
+)
 
 st.subheader("Vancouver Coastal long-wait procedures")
 st.dataframe(frames["vch_long_waits"], use_container_width=True, hide_index=True)

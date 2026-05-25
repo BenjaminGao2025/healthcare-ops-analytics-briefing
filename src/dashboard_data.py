@@ -63,6 +63,7 @@ def dashboard_summary(frames: dict[str, pd.DataFrame]) -> dict[str, object]:
     validity_issues = int(frames["quality_validity"]["bad_row_count"].sum())
     duplicate_rows = int(frames["quality_duplicates"]["duplicate_row_count"].sum())
     freshness_statuses = sorted(set(frames["quality_freshness"]["freshness_status"].astype(str)))
+    max_loaded_at = pd.to_datetime(frames["quality_freshness"]["max_loaded_at"]).max()
     return {
         "top_gap_procedure": str(top_gap.procedure_name),
         "top_gap_days": float(top_gap.gap_days),
@@ -73,4 +74,5 @@ def dashboard_summary(frames: dict[str, pd.DataFrame]) -> dict[str, object]:
         "validity_issues": validity_issues,
         "duplicate_rows": duplicate_rows,
         "freshness_status": ", ".join(freshness_statuses),
+        "max_loaded_at": max_loaded_at.date().isoformat(),
     }

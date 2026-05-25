@@ -279,3 +279,11 @@ The loaded fact table passes the core integrity checks needed before dashboard w
 - The dashboard keeps VCH filtering on the exact health authority name `Vancouver Coastal` and hospital hierarchy from `dim_geography.parent_geo_id`.
 - PDF and Excel files are generated outputs and remain ignored to avoid committing binary artifacts.
 - The main interpretation caveat remains BC_MoH null/suppressed case volume: 9,688 rows, or 17.6%, have null case volume.
+
+## Review fixes — KPI rollups and dashboard caveats (2026-05-24)
+
+- BC_MoH procedure-level KPIs K07, K08, K09, K10, and K11 now exclude `All Procedures` and `All Other Procedures` rollup rows so procedure scatterplots, hospital p90 charts, and HA volume trends do not mix aggregate rows with individual procedure rows.
+- The dashboard entry page now displays database load date from `MAX(loaded_at)` through DQ06-derived dashboard data, rather than a hardcoded date.
+- The Executive Summary now calls out that CIHI Hip Fracture Repair source values are reported in hours and converted to days for table consistency.
+- DQ06 is labeled as load recency, not source-data freshness.
+- The loader backfills BC health authority parent geography links to British Columbia after source loading.

@@ -155,7 +155,7 @@ SELECT
 FROM checks
 ORDER BY issue_type;
 
--- DQ06 | Freshness by source | Data Quality
+-- DQ06 | Load recency by source | Data Quality
 SELECT
   source_name,
   MAX(loaded_at) AS max_loaded_at,

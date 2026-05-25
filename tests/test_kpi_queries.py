@@ -31,6 +31,14 @@ def query_by_id(kpi_id: str) -> KpiQuery:
     return queries[kpi_id]
 
 
+def test_bc_moh_procedure_level_kpis_exclude_rollup_rows() -> None:
+    """BC rollup rows must not pollute procedure-level charts or totals."""
+    for kpi_id in ["K07", "K08", "K09", "K10", "K11"]:
+        sql = query_by_id(kpi_id).sql
+        assert "All Procedures" in sql
+        assert "All Other Procedures" in sql
+
+
 def assert_kpi_result_is_plausible(kpi_id: str) -> None:
     """Run one KPI query and assert basic data quality expectations."""
     engine = create_db_engine()

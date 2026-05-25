@@ -360,6 +360,21 @@ def load_wait_time_sources(raw_dir: Path, engine: Engine) -> dict[str, dict[str,
     with engine.begin() as conn:
         for source_name, rows in normalized.items():
             counts[source_name] = insert_fact_rows(conn, rows, source_name)
+        conn.execute(
+            text(
+                """
+                UPDATE dim_geography AS health_authority
+                SET parent_geo_id = province.geo_id
+                FROM dim_geography AS province
+                WHERE health_authority.geo_type = 'health_authority'
+                  AND health_authority.province_code = 'BC'
+                  AND health_authority.parent_geo_id IS NULL
+                  AND province.geo_name = 'British Columbia'
+                  AND province.geo_type = 'province'
+                  AND province.province_code = 'BC'
+                """
+            )
+        )
         for table_name in ["dim_procedure", "dim_geography", "fact_wait_time", "dim_community"]:
             counts[table_name] = {
                 "row_count": int(conn.execute(text(f"SELECT COUNT(*) FROM {table_name}")).scalar_one())
