@@ -1,0 +1,111 @@
+# Healthcare Ops Analytics Briefing
+
+![Build](https://img.shields.io/badge/build-placeholder-lightgrey)
+![License](https://img.shields.io/badge/license-MIT-blue)
+
+A public Canadian healthcare operations analytics demo that turns wait-time, access, and community context data into executive-ready reporting.
+
+Repository target: `git@github.com:BenjaminGao2025/healthcare-ops-analytics-briefing.git`
+
+## What This Project Demonstrates
+
+- SQL-based KPI extraction for healthcare access and wait-time indicators.
+- Python analysis for descriptive statistics, trend exploration, and repeatable reporting.
+- Streamlit dashboarding for leadership-facing summaries and operational drilldowns.
+- Data quality checks for completeness, validity, duplicates, outliers, and freshness.
+- Executive storytelling through concise summaries, briefing materials, and methodology notes.
+
+## Data Sources
+
+| Source | URL | Description |
+|---|---|---|
+| CIHI Wait Times for Priority Procedures | https://www.cihi.ca/en/explore-wait-times-for-priority-procedures-across-canada | National and provincial wait-time indicators for selected priority procedures. |
+| BC Surgical Wait Times | https://www2.gov.bc.ca/gov/content/health/accessing-health-care/surgical-wait-times | British Columbia surgical wait-time context by procedure, region, and care setting where available. |
+| VCH Community Health Profiles | https://www.vch.ca/en/community-health-profiles | Public community-level indicators that support equity-aware context and planning interpretation. |
+
+All data used is publicly available. This project does not use any patient-level or VCH internal data.
+
+## Quickstart
+
+Requires: Docker, Python 3.11, `make`.
+
+```bash
+# 1. Clone and enter
+git clone git@github.com:BenjaminGao2025/healthcare-ops-analytics-briefing.git
+cd healthcare-ops-analytics-briefing
+
+# 2. Python environment
+python3.11 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+
+# 3. Start Postgres (Docker)
+make up
+
+# 4. Create schema
+make schema
+
+# 5. Place raw data files into data/raw/ (see data/raw/SOURCE.md), then:
+make load
+
+# 6. Launch the dashboard
+make app
+```
+
+`make load` is reserved for `src/ingest.py` implementation and will populate `dim_*` and `fact_wait_time` after Day 1 ingestion work is added. `make app` opens Streamlit on http://localhost:8501.
+
+To stop Postgres: `make down`. To open a psql shell: `make psql`.
+
+## Repo Structure
+
+```text
+healthcare-ops-analytics-briefing/
+  README.md
+  LICENSE
+  .gitignore
+  requirements.txt
+  docker-compose.yml
+  Makefile
+  data/
+    raw/
+      SOURCE.md
+      .gitkeep
+      vch_community_profiles/.gitkeep
+    processed/.gitkeep
+    data_dictionary.md
+  sql/
+    01_schema.sql
+    02_load.sql
+    03_kpi_queries.sql
+    04_data_quality_checks.sql
+  notebooks/
+    01_eda_wait_times.ipynb
+    02_statistical_tests.ipynb
+    03_bc_vs_canada_benchmark.ipynb
+  src/
+    __init__.py
+    ingest.py
+    transform.py
+    kpi_calculations.py
+    quality_checks.py
+    plots.py
+  app/
+    streamlit_app.py
+    pages/
+      1_Executive_Summary.py
+      2_Operational_Drilldown.py
+      3_Data_Quality_Monitor.py
+      4_Equity_and_Responsible_Use.py
+  reports/
+    .gitkeep
+  tests/
+    __init__.py
+    test_kpi_calculations.py
+    test_quality_checks.py
+  excel/
+    .gitkeep
+```
+
+## License
+
+MIT.

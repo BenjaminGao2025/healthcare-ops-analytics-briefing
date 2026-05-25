@@ -1,0 +1,17 @@
+__pycache__/
+*.pyc
+.venv/
+.env
+.ipynb_checkpoints/
+.DS_Store
+data/raw/*.xlsx
+data/raw/*.csv
+data/raw/*.pdf
+data/processed/*.parquet
+data/processed/*.csv
+!data/processed/vch_community_indicators.csv
+.vscode/
+reports/*.pdf
+reports/*.pptx
+excel/*.xlsx
+*.log
